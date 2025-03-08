@@ -12,3 +12,5 @@ export default function Weather() {
       
 }
 
+//! todo check both sites weatherapi.com / visualcrossing.com
+//! same email and pass for both bojom and 123
