@@ -9,6 +9,7 @@
 
 //todo reservation should be with a picture of the house in winter or with threes in snow
 //todo home page should be with a boat on water preferably snowy peaks
+//todo catalog page with a lot of fishes
 
 //todo change the logo to a fish with angle of attack
 
