@@ -9,12 +9,17 @@ import BusinessPricing from './components/BusinessPricing';
 import NotFound from './components/NotFound';
 import Catalog from './components/Catalog';
 import ProductDetails from './components/ProductDetails';
-import './App.css'
 import Weather from './components/weather';
+import Footer from './components/Footer';
+
+import './App.css'
 
 function App() {
     return (
-        <div className="bg-white">
+        <div className="bg-white flex flex-col min-h-screen">
+
+            <main className="flex-grow">
+
             <Header />
 
             <Routes>
@@ -33,7 +38,9 @@ function App() {
                 {/* //todo fetch from visualcrossing.com the weather info for dospat with some changes to the options */}
                 <Route path="*" element={<NotFound />} />
             </Routes>
+            </main>
 
+            <Footer/>
         </div>
     )
 }
