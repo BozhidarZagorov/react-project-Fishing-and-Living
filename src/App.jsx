@@ -14,6 +14,7 @@ import Footer from './components/Footer';
 
 import './App.css'
 
+
 function App() {
     return (
         <div className="bg-white flex flex-col min-h-screen">
