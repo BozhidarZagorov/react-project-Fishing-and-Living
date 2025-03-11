@@ -1,27 +1,16 @@
 import React, { useState } from "react";
 
 export default function Weather() {
-    // fetch("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/dospat?unitGroup=metric&elements=datetime%2CdatetimeEpoch%2Cname%2Ctempmax%2Ctempmin%2Ctemp%2Chumidity%2Csnow%2Cwindspeed%2Cwindspeedmax%2Cwindspeedmin%2Cwinddir%2Cpressure%2Cuvindex%2Csunrise%2Csunset%2Cconditions%2Cdescription%2Cicon&include=days%2Chours%2Calerts%2Ccurrent&key=LQCFA6SWM9Q5TPK4T79HSX2U7&contentType=json", {
-    //     "method": "GET",
-    //     "headers": {
-    //     }
-    //     })
-    //   .then(res => res.json())
-    //   .then(res => console.log(res))
-    //   .catch(err => {
-    //     console.error(err);
-    //   });
-
 
   const [city, setCity] = useState("");
-  const [weather, setWeather] = useState(null);
+  const [weather, setWeather] = useState();
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState();
 
   const fetchWeather = async () => {
     if (!city) return;
     setLoading(true);
-    setError(null);
+    setError();
 
     try {
       const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=metric&elements=datetime%2CdatetimeEpoch%2Cname%2Ctempmax%2Ctempmin%2Ctemp%2Chumidity%2Csnow%2Cwindspeed%2Cwindspeedmax%2Cwindspeedmin%2Cwinddir%2Cpressure%2Cuvindex%2Csunrise%2Csunset%2Cconditions%2Cdescription%2Cicon&include=days%2Chours%2Calerts%2Ccurrent&key=LQCFA6SWM9Q5TPK4T79HSX2U7&contentType=json`);
@@ -56,6 +45,7 @@ export default function Weather() {
           placeholder="Enter city..."
           value={city}
           onChange={(e) => setCity(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && fetchWeather()}
         />
         <button
           className="btn-orange"
@@ -65,14 +55,14 @@ export default function Weather() {
         </button>
       </div>
 
-      {loading && <p className="mt-4 text-yellow-300">Loading...</p>}
+      {loading && <p className="spinner mt-5"></p>}
       {error && <p className="mt-4 text-red-500">{error}</p>}
 
       {weather && (
         <div
           className="mt-6 p-4 rounded-lg shadow-md text-center border-2 border-bg-gray-800"
           style={{
-          background: "linear-gradient(135deg,rgb(244, 171, 62) 40%,rgb(94, 141, 244) 100%)",
+          background: "linear-gradient(135deg,rgb(83, 152, 242) 5%,rgb(235, 129, 29) 100%)",
         }}>
 
             
@@ -89,10 +79,3 @@ export default function Weather() {
   );
 
 }
-
-
-
-
-
-//! todo check both sites weatherapi.com / visualcrossing.com
-//! same email and pass for both bojom and 123
