@@ -76,9 +76,12 @@ export default function Weather() {
         }}>
 
             
-          <h2 className="text-2xl font-semibold text-gray-900">{weather.resolvedAddress}</h2>
+          <h2 className="text-2xl font-semibold text-gray-900">{weather.resolvedAddress} {weather.currentConditions.datetime}</h2>
           <p className="text-lg">{weather.currentConditions.conditions}</p>
           <img src={weather.currentConditions.icon} alt="Weather Icon" className="mx-auto" />
+          <p className="text-lg">💦 Humidity: {weather.currentConditions.humidity}%</p>
+          <p className="text-lg">💨 speed: {weather.currentConditions.windspeed} m/s</p>
+          <p className="text-lg">⚖️ pressure: {((weather.currentConditions.pressure)*0.001).toFixed(3)} bar</p>
           <p className="text-3xl font-bold">{weather.currentConditions.temp}°C</p>
         </div>
       )}
