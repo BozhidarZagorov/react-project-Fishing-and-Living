@@ -20,7 +20,7 @@ export default function Header() {
             <nav aria-label="Global" className="flex items-center justify-between p-6 lg:px-8">
                 <div className="flex lg:flex-1">
                     <Link to="/" className="-m-1.5 p-1.5">
-                        <span className="sr-only">Your Company</span>
+                        <span className="sr-only">Fishing&Living</span>
                         <img
                             alt=""
                             src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
@@ -55,16 +55,16 @@ export default function Header() {
                     ))}
                 </div>
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-                    <div className="flex flex-col items-end space-y-2">
+                    <div className="flex flex-row items-end space-x-2">
                         {/* //todo change visibility  -> logout when logged in / login and register when logged out */}
                         <Link to="/login" className="btn-orange">
                             Log in <span aria-hidden="true">&larr;</span>
                         </Link>
-                        <Link to="/logout" className="btn-orange">
-                            Log out <span aria-hidden="true">&rarr;</span>
-                        </Link>
                         <Link to="/register" className="btn-orange">
                             Register <span aria-hidden="true">&larr;</span>
+                        </Link>
+                        <Link to="/logout" className="btn-orange">
+                            Log out <span aria-hidden="true">&rarr;</span>
                         </Link>
                     </div>
                 </div>
@@ -74,7 +74,7 @@ export default function Header() {
                 <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
                     <div className="flex items-center justify-between">
                         <Link to="/" className="-m-1.5 p-1.5">
-                            <span className="sr-only">Your Company</span>
+                            <span className="sr-only">Fishing&Living</span>
                             <img
                                 alt=""
                                 src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"

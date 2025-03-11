@@ -36,7 +36,6 @@ function App() {
                     <Route path='business' element={<BusinessPricing />} />
                 </Route>
                 <Route path="/weather" element={<Weather />} />
-                {/* //todo fetch from visualcrossing.com the weather info for dospat with some changes to the options */}
                 <Route path="*" element={<NotFound />} />
             </Routes>
             </main>
