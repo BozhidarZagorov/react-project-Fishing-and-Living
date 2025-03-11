@@ -8,7 +8,7 @@ export default function Weather() {
   const [error, setError] = useState();
 
   const fetchWeather = async () => {
-    if (!city) return;
+    if (!city || city===city) return;
     setLoading(true);
     setError();
 
