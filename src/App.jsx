@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router';
 
+import useFavicon from './components/Favicon';
 import Header from './components/Header'
 import Home from './components/Home'
 import Contacts from './components/Contacts';
@@ -16,6 +17,7 @@ import './App.css'
 
 
 function App() {
+    useFavicon("/logo.png");
     return (
         <div className="bg-white flex flex-col min-h-screen">
 
