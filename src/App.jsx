@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router';
+import "../config/firebaseinit"
 
 import useFavicon from './components/Favicon';
 import Header from './components/Header'
