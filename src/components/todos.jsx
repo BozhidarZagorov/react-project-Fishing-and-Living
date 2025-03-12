@@ -7,12 +7,11 @@
 
 //todo change background to picture of dospat lake with the boat or find a big fishing boat with ppl with fishing gear or smt simmilar
 //todo it should be better with different pictures on most if not every page
+//todo homepage could be 1st half of the house and 2nd on the water with the boat or smt like that
 
 //todo reservation should be with a picture of the house in winter or with threes in snow
 //todo home page should be with a boat on water preferably snowy peaks
 //todo catalog page with a lot of fishes
-
-//todo change the logo to a fish with angle of attack
 
 //todo add weather table for the next 7 or 14 days
 
