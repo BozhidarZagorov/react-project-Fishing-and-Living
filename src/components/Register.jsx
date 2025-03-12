@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router";
 
-export default function Login (){
+export default function Register (){
     return (
       <>
         <div className="relative isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
@@ -12,7 +12,7 @@ export default function Login (){
               className="mx-auto h-10 w-auto"
             />
             <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
-              Log in to your account
+              Register your account
             </h2>
           </div>
   
@@ -62,15 +62,15 @@ export default function Login (){
                   type="submit"
                   className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
-                  Log in
+                  Register
                 </button>
               </div>
             </form>
   
             <p className="mt-10 text-center text-sm/6 text-gray-500">
-              Not a member?{' '}
-              <Link href="/register" className="font-semibold text-indigo-600 hover:text-indigo-500">
-                Register
+              Already a member?{' '}
+              <Link href="/login" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                Log in
               </Link>
             </p>
           </div>
@@ -78,4 +78,3 @@ export default function Login (){
       </>
     )
   }
-  

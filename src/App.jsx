@@ -4,6 +4,8 @@ import "../config/firebaseinit"
 import useFavicon from './components/Favicon';
 import Header from './components/Header'
 import Home from './components/Home'
+import Login from './components/Login';
+import Register from './components/Register';
 import Contacts from './components/Contacts';
 import Pricing from './components/Pricing';
 import IndividualPricing from './components/IndividualPricing';
@@ -28,8 +30,8 @@ function App() {
 
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/login" element={"<h1>login<h1/>"} />
-                <Route path="/register" element={"<h1>register<h1/>"} />
+                <Route path="/login" element={<Login/>} />
+                <Route path="/register" element={<Register/>} />
                 <Route path="/logout" element={"<h1>logout<h1/>"} />
                 <Route path="/catalog" element={<Catalog />} />
                 <Route path="/catalog/:productId" element={<ProductDetails />} />
