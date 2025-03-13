@@ -1,6 +1,8 @@
 import { Routes, Route } from 'react-router';
 import "../config/firebaseinit"
 
+import { AuthProvider } from '../auth/FirebaseAuth';
+
 import useFavicon from './components/Favicon';
 import Header from './components/Header'
 import Home from './components/Home'
@@ -22,6 +24,7 @@ import './App.css'
 function App() {
     useFavicon("/logo.png");
     return (
+    <AuthProvider>
         <div className="bg-white flex flex-col min-h-screen">
 
             <main className="flex-grow">
@@ -47,6 +50,7 @@ function App() {
 
             <Footer/>
         </div>
+    </AuthProvider>
     )
 }
 
