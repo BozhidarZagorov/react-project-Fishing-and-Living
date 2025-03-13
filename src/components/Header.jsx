@@ -4,6 +4,8 @@ import { Link, NavLink } from 'react-router';
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
+import { useAuth } from "../../auth/FirebaseAuth";
+
 const navigation = [
     { name: 'Home', path: '/' },
     { name: 'Catalog', path: '/catalog' },
@@ -14,6 +16,7 @@ const navigation = [
 
 export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+    const { user, isAuthenticated } = useAuth(); //! auth ctx
 
     return (
         <header className="absolute inset-x-0 top-0 z-50">
@@ -57,15 +60,20 @@ export default function Header() {
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end">
                     <div className="flex flex-row items-end space-x-2">
                         {/* //todo change visibility  -> logout when logged in / login and register when logged out */}
-                        <Link to="/login" className="btn-orange">
-                            Log in <span aria-hidden="true">&larr;</span>
-                        </Link>
-                        <Link to="/register" className="btn-orange">
-                            Register <span aria-hidden="true">&larr;</span>
-                        </Link>
-                        <Link to="/logout" className="btn-orange">
-                            Log out <span aria-hidden="true">&rarr;</span>
-                        </Link>
+                        {isAuthenticated ? (
+                            <Link to="/logout" className="btn-orange">
+                                Log out <span aria-hidden="true">&rarr;</span>
+                            </Link>
+                        ):(
+                        <>
+                            <Link to="/login" className="btn-orange">
+                                Log in <span aria-hidden="true">&larr;</span>
+                            </Link>
+                            <Link to="/register" className="btn-orange">
+                                Register <span aria-hidden="true">&larr;</span>
+                            </Link>
+                        </>
+                        )}
                     </div>
                 </div>
             </nav>
@@ -92,6 +100,10 @@ export default function Header() {
                     </div>
                     <div className="mt-6 flow-root">
                         <div className="-my-6 divide-y divide-gray-500/10">
+                        {isAuthenticated ? (
+                            <>
+                            </>    
+                        ):(
                             <div className="py-6">
                                 <Link
                                     to="/login"
@@ -106,6 +118,7 @@ export default function Header() {
                                     Register <span aria-hidden="true">&larr;</span>
                                 </Link>
                             </div>
+                        )}
                             <div className="space-y-2 py-6">
                                 {navigation.map((item) => (
                                     <Link
@@ -117,14 +130,19 @@ export default function Header() {
                                     </Link>
                                 ))}
                             </div>
-                            <div>
-                                <Link
-                                    to="/logout"
-                                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-                                >
-                                    Log out <span aria-hidden="true">&rarr;</span>
-                                </Link>
-                            </div>
+                            {isAuthenticated ? (
+                                <div>
+                                    <Link
+                                        to="/logout"
+                                        className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                                    >
+                                        Log out <span aria-hidden="true">&rarr;</span>
+                                    </Link>
+                                </div>
+                            ):(
+                                <>
+                                </>
+                            )}
                         </div>
                     </div>
                 </DialogPanel>
