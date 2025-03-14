@@ -6,8 +6,9 @@ import { AuthProvider } from '../ctx/FirebaseAuth';
 import useFavicon from './components/Favicon';
 import Header from './components/Header'
 import Home from './components/Home'
-import Login from './components/Login';
 import Register from './components/Register';
+import Login from './components/Login';
+import Logout from './components/Logout';
 import Contacts from './components/Contacts';
 import Pricing from './components/Pricing';
 import IndividualPricing from './components/IndividualPricing';
@@ -35,7 +36,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login/>} />
                 <Route path="/register" element={<Register/>} />
-                <Route path="/logout" element={"<h1>logout<h1/>"} />
+                <Route path="/logout" element={<Logout/>} />
                 <Route path="/catalog" element={<Catalog />} />
                 <Route path="/catalog/:productId" element={<ProductDetails />} />
                 <Route path="/contacts" element={<Contacts />} />
