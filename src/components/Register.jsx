@@ -1,7 +1,35 @@
-import React from "react";
-import { Link } from "react-router";
+import React, { useRef, useState } from "react"
+import { Link, useNavigate } from "react-router"
+import { auth } from "../../config/firebaseinit"
+import { createUserWithEmailAndPassword } from "firebase/auth"
 
 export default function Register (){
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
+
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      console.log("User registered:", email);
+      navigate("/"); // Redirect to Home
+    } catch (err) {
+      setError(err.message)
+    } finally{
+      setLoading(false)
+    }
+  }
+
     return (
       <>
         <div className="relative isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
@@ -17,7 +45,9 @@ export default function Register (){
           </div>
   
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form method="POST" className="space-y-6">
+
+          {error && <p className="text-red-500 text-sm">{error}</p>}
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="email" className="block text-sm/6 font-medium text-gray-900">
                   Email address
@@ -29,6 +59,7 @@ export default function Register (){
                     type="email"
                     required
                     autoComplete="email"
+                    ref={emailRef}
                     className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                   />
                 </div>
@@ -52,6 +83,7 @@ export default function Register (){
                     type="password"
                     required
                     autoComplete="current-password"
+                    ref={passwordRef}
                     className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                   />
                 </div>
@@ -62,14 +94,14 @@ export default function Register (){
                   type="submit"
                   className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
-                  Register
+                  {loading ? "Registering..." : "Register"}
                 </button>
               </div>
             </form>
   
             <p className="mt-10 text-center text-sm/6 text-gray-500">
               Already a member?{' '}
-              <Link href="/login" className="font-semibold text-indigo-600 hover:text-indigo-500">
+              <Link to="/login" className="font-semibold text-indigo-600 hover:text-indigo-500">
                 Log in
               </Link>
             </p>

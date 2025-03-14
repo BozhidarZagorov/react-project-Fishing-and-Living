@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router';
 import "../config/firebaseinit"
 
-import { AuthProvider } from '../auth/FirebaseAuth';
+import { AuthProvider } from '../ctx/FirebaseAuth';
 
 import useFavicon from './components/Favicon';
 import Header from './components/Header'

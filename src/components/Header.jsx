@@ -4,7 +4,7 @@ import { Link, NavLink } from 'react-router';
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
-import { useAuth } from "../../auth/FirebaseAuth";
+import { useAuth } from "../../ctx/FirebaseAuth";
 
 const navigation = [
     { name: 'Home', path: '/' },
