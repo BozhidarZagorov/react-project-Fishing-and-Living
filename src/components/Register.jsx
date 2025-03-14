@@ -6,7 +6,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth"
 export default function Register (){
   const emailRef = useRef();
   const passwordRef = useRef();
-  const [error, setError] = useState("");
+  const [err, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -24,7 +24,22 @@ export default function Register (){
       console.log("User registered:", email);
       navigate("/"); // Redirect to Home
     } catch (err) {
-      setError(err.message)
+
+      switch (err.code) {
+        case "auth/email-already-in-use":
+          setError("Email is already in use!");
+          break;
+        case "auth/invalid-email":
+          setError("Email is invalid!");
+          break;
+        case "auth/weak-password":
+          setError("Password is too weak!");
+          break
+        default:
+          setError(err.message)
+          break;
+      }
+      
     } finally{
       setLoading(false)
     }
@@ -46,7 +61,7 @@ export default function Register (){
   
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
 
-          {error && <p className="text-red-500 text-sm">{error}</p>}
+          {err && <p className="text-red-500 text-sm">{err}</p>}
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="email" className="block text-sm/6 font-medium text-gray-900">
@@ -92,6 +107,7 @@ export default function Register (){
               <div>
                 <button
                   type="submit"
+                  disabled={loading}
                   className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   {loading ? "Registering..." : "Register"}
