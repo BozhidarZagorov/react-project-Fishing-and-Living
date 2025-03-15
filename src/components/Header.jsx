@@ -85,7 +85,7 @@ export default function Header() {
                             <span className="sr-only">Fishing&Living</span>
                             <img
                                 alt=""
-                                src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
+                                src="/logo.png"
                                 className="h-8 w-auto"
                             />
                         </Link>
