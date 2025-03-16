@@ -20,6 +20,8 @@ import Weather from './components/weather';
 import Footer from './components/Footer';
 
 import './App.css'
+import CurrentWeather from './components/CurrentWeather';
+import Next15Days from './components/Next15Days';
 
 
 function App() {
@@ -44,7 +46,10 @@ function App() {
                     <Route index element={<IndividualPricing />} />
                     <Route path='business' element={<BusinessPricing />} />
                 </Route>
-                <Route path="/weather" element={<Weather />} />
+                <Route path="/weather" element={<Weather />}>
+                    <Route index element={<CurrentWeather/>}/>
+                    <Route path='next15Days' element={<Next15Days/>}/>
+                </Route>
                 <Route path="*" element={<NotFound />} />
             </Routes>
             </main>
