@@ -2,7 +2,7 @@ import { Link, Outlet } from 'react-router'
 
 export default function Weather() {
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center p-6"
+        <div className="min-h-screen flex flex-col items-center justify-center p-6 pt-20"
         style={{
           background: `linear-gradient(135deg,rgb(120, 158, 233) 25%,rgb(209, 121, 26) 75%)`,
         }}>
