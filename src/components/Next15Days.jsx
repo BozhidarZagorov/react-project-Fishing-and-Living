@@ -6,7 +6,8 @@ export default function Next15Days() {
   const [weather, setWeather] = useState();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
-  const [lastCity, setLastCity] = useState(""); //last city
+  const [lastCity, setLastCity] = useState("");
+  const [selectedDay, setSelectedDay] = useState(null);
 
   const fetchWeather = async () => {
     if (!city || city === lastCity) return;
@@ -58,27 +59,79 @@ export default function Next15Days() {
       {error && <p className="mt-4 text-red-500 text-center">{error}</p>}
 
       {weather && (
+        <div className="w-full flex justify-center">
+          {selectedDay === null ? (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-4">
           {weather.map((day, index) => (
-            <div
-              key={index}
-              className="p-3 rounded-lg shadow-md text-center border border-gray-700 bg-gray-900 text-white"
-            >
+
+            <div key={index} className="p-3 rounded-lg shadow-md text-center border border-gray-700 bg-gray-900 text-white">
               <h2 className="text-lg font-semibold">{day.datetime}</h2>
               <p className="text-sm">{day.conditions}</p>
-              <img
-                src={`${day.icon}.png`} // Replace with actual icon URL
-                alt="Weather Icon"
-                className="mx-auto w-10 h-10"
-              />
+              <img src={`${day.icon}.png`} alt="Weather Icon" className="mx-auto w-10 h-10" />
               <p className="text-sm">🌡 {day.temp}°C</p>
               <p className="text-xs">💦 Humidity: {day.humidity}%</p>
               <p className="text-xs">💨 Wind: {day.windspeed} m/s</p>
               <p className="text-xs">⚖️ Pressure: {day.pressure} hPa</p>
+
+              {/* Details Button */}
+              <button
+                className="btn-orange mt-2"
+                onClick={() => setSelectedDay(selectedDay === index ? null : index)}
+              >
+                {selectedDay === index ? "Hide Details" : "Show Details"}
+              </button>
             </div>
           ))}
         </div>
+      ) : (
+        <div className="flex flex-col items-center">
+          <div className="p-3 rounded-lg shadow-md text-center border border-gray-700 bg-gray-900 text-white w-80">
+            <h2 className="text-lg font-semibold">{weather[selectedDay].datetime}</h2>
+            <p className="text-sm">{weather[selectedDay].conditions}</p>
+            <img src={`${weather[selectedDay].icon}.png`} alt="Weather Icon" className="mx-auto w-10 h-10" />
+            <p className="text-sm">🌡 {weather[selectedDay].temp}°C</p>
+            <p className="text-xs">💦 Humidity: {weather[selectedDay].humidity}%</p>
+            <p className="text-xs">💨 Wind: {weather[selectedDay].windspeed} m/s</p>
+            <p className="text-xs">⚖️ Pressure: {weather[selectedDay].pressure} hPa</p>
+
+              <button className="btn-orange mt-2" onClick={() => setSelectedDay(null)}>
+                Hide Details
+              </button>
+          </div>
+
+        {/* Hourly Details Table (Below the selected day) */}
+        {weather[selectedDay].hours && (
+          <div className="mt-6 p-4 border-t border-gray-600 w-full max-w-4xl">
+            <h3 className="text-xl font-bold text-center">Hourly Forecast for {weather[selectedDay].datetime}</h3>
+              <div className="overflow-x-auto">
+                <table className="w-full mt-4 border border-gray-700 text-white bg-gray-800">
+                  <thead>
+                    <tr className="bg-gray-900">
+                      <th className="p-2 border border-gray-700">Time</th>
+                      <th className="p-2 border border-gray-700">Temp (°C)</th>
+                      <th className="p-2 border border-gray-700">Humidity (%)</th>
+                      <th className="p-2 border border-gray-700">Wind (m/s)</th>
+                      <th className="p-2 border border-gray-700">Conditions</th>
+                    </tr>
+                  </thead>
+                <tbody>
+                  {weather[selectedDay].hours.map((hour, hourIndex) => (
+                    <tr key={hourIndex} className="text-center border-t border-gray-700">
+                      <td className="p-2 border border-gray-700">{hour.datetime}</td>
+                      <td className="p-2 border border-gray-700">{hour.temp}</td>
+                      <td className="p-2 border border-gray-700">{hour.humidity}</td>
+                      <td className="p-2 border border-gray-700">{hour.windspeed}</td>
+                      <td className="p-2 border border-gray-700">{hour.conditions}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          )}
+        </div>
+        )}
+      </div>
       )}
     </div>
-  );
-}
+    )}
