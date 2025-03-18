@@ -1,7 +1,6 @@
 
 //todo can use the little simbols for phone and mail
 
-//todo change catalog items by hardcoding it to a jsonfile with voblers (no prices just number of caught fish) 
 //todo can extract the img from google drive
 //!change of plans all of above is to be done with firebase
 
@@ -12,8 +11,6 @@
 //todo reservation should be with a picture of the house in winter or with threes in snow
 
 //todo catalog page with a lot of fishes
-
-//todo add weather table for the next 7 or 14 days
 
 //todo add page with a boat and places for the rods and a dropdown menu for the possible attachable voblers on the current spot 
     //todo add possible rods as well 
