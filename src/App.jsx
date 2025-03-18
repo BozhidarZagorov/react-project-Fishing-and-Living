@@ -23,6 +23,7 @@ import './App.css'
 import CurrentWeather from './components/CurrentWeather';
 import Next15Days from './components/Next15Days';
 import CreateWobbler from './components/CreateWobbler';
+import EditWobbler from './components/EditWobbler';
 
 
 function App() {
@@ -41,8 +42,9 @@ function App() {
                 <Route path="/register" element={<Register/>} />
                 <Route path="/logout" element={<Logout/>} />
                 <Route path="/catalog" element={<Catalog />} />
-                <Route path="/catalog/:wobblerId" element={<ProductDetails />} />
                 <Route path="/catalog/addWobbler" element={<CreateWobbler/>} />
+                <Route path="/catalog/:wobblerId" element={<ProductDetails />} />
+                <Route path="/catalog/:wobblerId/edit" element={<EditWobbler />} />
                 <Route path="/contacts" element={<Contacts />} />
                 <Route path="/pricing" element={<Pricing />}>
                     <Route index element={<IndividualPricing />} />
