@@ -1,14 +1,17 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
-import { doc, getDoc } from 'firebase/firestore'
+import { doc, getDoc, updateDoc, arrayUnion } from 'firebase/firestore'
 import { db } from '../../config/firebaseinit'
+import { useAuth } from '../../ctx/FirebaseAuth'
 
 import { StarIcon } from '@heroicons/react/20/solid'
 
 export default function ProductDetails () {
     const { wobblerId } = useParams();
-    const [wobbler, setWobbler] = useState({});
-    const [loading, setLoading] = useState(true);
+    const [wobbler, setWobbler] = useState({})
+    const [loading, setLoading] = useState(true)
+    const [hasLiked, setHasLiked] = useState(false)
+    const { user, isAuthenticated } = useAuth(); //! auth ctx
 
     useEffect(() => {
         const fetchWobbler = async () => {
@@ -26,18 +29,60 @@ export default function ProductDetails () {
         fetchWobbler();
     }, [wobblerId]);
 
+    useEffect(() => {
+        if (isAuthenticated && user) {
+            
+            const checkIfLiked = () => {
+                if (wobbler.likedByUserId && wobbler.likedByUserId.includes(user.uid)) {
+                    setHasLiked(true);
+                }
+            };
+
+            checkIfLiked();
+        }
+    }, [wobbler, isAuthenticated, user]);
+
+
+    const handleLike = async () => {
+        if (!isAuthenticated || hasLiked) return; // Prevent like if not auth or already liked
+
+        const docRef = doc(db, "catalog", wobblerId);
+        await updateDoc(docRef, {
+            likes: wobbler.likes + 1,
+            likedByUserId: arrayUnion(user.uid)
+        });
+
+        setWobbler((prevState) => ({
+            ...prevState,
+            likes: prevState.likes + 1
+        }));
+
+        setHasLiked(true); // Set state to prevent further likes
+    }
+
+    const handleFishCount = async () => {
+        const docRef = doc(db, "catalog", wobblerId);
+        await updateDoc(docRef, {
+            fishCount: wobbler.fishCount + 1
+        });
+        setWobbler((prevState) => ({
+            ...prevState,
+            fishCount: prevState.fishCount + 1
+        }));
+    }
+
     if (loading) return <p>Loading...</p>;// add proper loading
 
     return (
         <div className="bg-white">
             <div className="pt-6">
-                {/* Product info */}
+                {/* Wobbler info */}
                 <div className="mx-auto max-w-2xl px-4 pt-10 pb-16 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto_auto_1fr] lg:gap-x-8 lg:px-8 lg:pt-16 lg:pb-24">
                     <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
                         <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{wobbler.title}</h1>
                     </div>
 
-                    {/* Options */}
+                    {/* img */}
                     <div className="mt-4 lg:row-span-3 lg:mt-0">
                         <h2 className="sr-only">Wobbler information</h2>
 
@@ -49,7 +94,7 @@ export default function ProductDetails () {
 
                         {/* <p className="text-3xl tracking-tight text-gray-900">{wobbler.likes}</p> */}
 
-                        {/* Reviews */}
+                        
                         <div className="mt-6">
                             <h3 className="sr-only">Reviews</h3>
                             <div className="flex items-center">
@@ -67,6 +112,15 @@ export default function ProductDetails () {
                                 <p className="sr-only">{wobbler.likes} out of 5 stars</p>
                                 <p className="ml-3 text-sm font-medium text-indigo-600">{wobbler.likes} Likes</p>
                             </div>
+                        {!hasLiked && (
+                            <button
+                                type="button"
+                                className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden"
+                                onClick={handleLike}
+                            >
+                                Like
+                            </button>
+                         )}
                         </div>
 
                         <form className="mt-10">
@@ -79,8 +133,9 @@ export default function ProductDetails () {
                             <button
                                 type="button"
                                 className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden"
+                                onClick={handleFishCount}
                             >
-                                Add to bag
+                                +1 Fish Count
                             </button>
                         </form>
                     </div>
