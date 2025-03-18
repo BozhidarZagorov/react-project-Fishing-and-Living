@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link, useSearchParams } from "react-router"
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../config/firebaseinit";
 
 import {
     Menu,
@@ -12,10 +14,8 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
 const sortOptions = [
     { name: 'All', href: '/catalog', current: true },
-    { name: 'Best Rating', href: '/catalog?top=true', current: false },
-    { name: 'Popular', href: '/catalog?popular=true', current: false },
-    { name: 'Price: Low to High', href: '/catalog?sortBy=price&dir=asc', current: false },
-    { name: 'Price: High to Low', href: '/catalog?sortBy=price&dir=desc', current: false },
+    { name: 'Most Liked', href: '/catalog?sortBy=likes&dir=desc', current: false },
+    { name: 'Most Caught Fish', href: '/catalog?sortBy=fishCount&dir=desc', current: false },
 ]
 
 function classNames(...classes) {
@@ -24,35 +24,39 @@ function classNames(...classes) {
 
 export default function Catalog() {
     const [searchParams] = useSearchParams();
-    const [products, setProducts] = useState([]);
-    const [displayProducts, setDisplayProducts] = useState([]);
+    const [wobblers, setWobblers] = useState([]);
+    const [displayWobblers, setDisplayWobblers] = useState([]);
 
     useEffect(() => {
-        fetch('https://fakestoreapi.com/products')
-            .then(res => res.json())
-            .then(result => {
-                setProducts(result);
-            })
+        const fetchWobblers = async () => {
+            const querySnapshot = await getDocs(collection(db, "catalog")); // ✅ Fetch from "wobblers"
+            const wobblerList = querySnapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }));
+            setWobblers(wobblerList);
+        };
+
+        fetchWobblers();
     }, []);
 
     useEffect(() => {
         const filter = Object.fromEntries(searchParams);
 
         if (filter.sortBy) {
-            setDisplayProducts([...products].sort((p1, p2) => filter.dir === 'asc' ? p1.price - p2.price : p2.price - p1.price))
-        } else if (filter.top) {
-            setDisplayProducts(products.filter(p => p.rating?.rate >= 4));
+            setDisplayWobblers([...wobblers].sort((w1, w2) =>
+                filter.dir === 'asc' ? w1[filter.sortBy] - w2[filter.sortBy] : w2[filter.sortBy] - w1[filter.sortBy]))
         } else {
-            setDisplayProducts([...products]);
+            setDisplayWobblers([...wobblers]);
         }
-    }, [products, searchParams])
+    }, [wobblers, searchParams])
 
     return (
         <div className="bg-white">
 
 
             <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-                <h2 className="sr-only">Products</h2>
+                <h2 className="sr-only">Wobblers</h2>
 
                 <Menu as="div" className="relative inline-block text-left">
                     <div>
@@ -88,8 +92,8 @@ export default function Catalog() {
                 </Menu>
 
                 <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-                    {displayProducts.map((product) => (
-                        <CatalogItem key={product.id} product={product} />
+                    {displayWobblers.map((wobbler) => (
+                        <CatalogItem key={wobbler.id} wobbler={wobbler} />
                     ))}
                 </div>
             </div>
