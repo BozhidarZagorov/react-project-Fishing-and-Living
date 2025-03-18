@@ -40,7 +40,7 @@ function App() {
                 <Route path="/register" element={<Register/>} />
                 <Route path="/logout" element={<Logout/>} />
                 <Route path="/catalog" element={<Catalog />} />
-                <Route path="/catalog/:productId" element={<ProductDetails />} />
+                <Route path="/catalog/:wobblerId" element={<ProductDetails />} />
                 <Route path="/contacts" element={<Contacts />} />
                 <Route path="/pricing" element={<Pricing />}>
                     <Route index element={<IndividualPricing />} />
