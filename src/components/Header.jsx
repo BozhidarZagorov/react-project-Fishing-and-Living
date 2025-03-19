@@ -9,7 +9,6 @@ import { useAuth } from "../../ctx/FirebaseAuth";
 const navigation = [
     { name: 'Home', path: '/' },
     { name: 'Catalog', path: '/catalog' },
-    { name: 'AddWobbler', path: '/catalog/addWobbler' },
     { name: 'Pricing', path: '/pricing' },
     { name: 'Contacts', path: '/contacts' },
     { name: 'Weather', path: '/weather' },

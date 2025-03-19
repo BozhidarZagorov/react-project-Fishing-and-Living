@@ -58,6 +58,17 @@ export default function Catalog() {
             <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
                 <h2 className="sr-only">Wobblers</h2>
 
+                <div className="flex justify-center bg-white px-6 py-8 lg:px-8">
+                    <div className="flex gap-x-12">
+                        <Link
+                            to="/catalog/addWobbler"
+                            className="btn-orange"
+                        >
+                            Add Wobbler
+                        </Link>
+                    </div>
+                </div>
+
                 <Menu as="div" className="relative inline-block text-left">
                     <div>
                         <MenuButton className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">

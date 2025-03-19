@@ -5,7 +5,6 @@ import { db } from '../../config/firebaseinit'
 import { useAuth } from '../../ctx/FirebaseAuth'
 import { useNavigate } from 'react-router'
 
-
 import { StarIcon } from '@heroicons/react/20/solid'
 
 export default function ProductDetails () {
