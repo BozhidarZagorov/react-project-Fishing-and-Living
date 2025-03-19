@@ -31,13 +31,13 @@ export default function CurrentWeather() {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-4 rounded-md shadow-md border-2 bg-gray-800"
+      <h1 className="text-3xl font-bold mb-4 rounded-md shadow-md border-2 bg-gray-800 text-center"
       style={{
         background: `linear-gradient(135deg,rgb(93, 138, 227) 25%,rgb(227, 155, 79) 75%)`,
       }}
       >🌙 Current Weather 🌤</h1>
 
-      <div className="flex space-x-4">
+      <div className="flex space-x-4 justify-center">
         <input
           type="text"
           className="p-2 text-white rounded-md outline-none border-2 border-gray-800"
