@@ -15,15 +15,15 @@ import IndividualPricing from './components/IndividualPricing';
 import BusinessPricing from './components/BusinessPricing';
 import NotFound from './components/NotFound';
 import Catalog from './components/Catalog';
+import CreateWobbler from './components/CreateWobbler';
+import EditWobbler from './components/EditWobbler';
 import ProductDetails from './components/ProductDetails';
 import Weather from './components/weather';
+import CurrentWeather from './components/CurrentWeather';
+import Next15Days from './components/Next15Days';
 import Footer from './components/Footer';
 
 import './App.css'
-import CurrentWeather from './components/CurrentWeather';
-import Next15Days from './components/Next15Days';
-import CreateWobbler from './components/CreateWobbler';
-import EditWobbler from './components/EditWobbler';
 
 
 function App() {

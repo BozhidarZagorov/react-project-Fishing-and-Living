@@ -38,7 +38,7 @@ export default function EditWobbler() {
                 setFishCount(data.fishCount);
 
                 // Ensure the current user is the creator of the wobbler
-                if (data.createdByUserID !== user.uid) {
+                if (data.createdByUserId !== user.uid) {
                     setError('You are not the creator of this wobbler.');
                 }
             } else {

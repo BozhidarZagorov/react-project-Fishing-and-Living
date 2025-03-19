@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
-import { doc, getDoc, updateDoc, arrayUnion } from 'firebase/firestore'
+import { doc, getDoc, updateDoc, arrayUnion, deleteDoc } from 'firebase/firestore'
 import { db } from '../../config/firebaseinit'
 import { useAuth } from '../../ctx/FirebaseAuth'
+import { useNavigate } from 'react-router'
+
 
 import { StarIcon } from '@heroicons/react/20/solid'
 
@@ -12,6 +14,8 @@ export default function ProductDetails () {
     const [loading, setLoading] = useState(true)
     const [hasLiked, setHasLiked] = useState(false)
     const { user, isAuthenticated } = useAuth(); //! auth ctx
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchWobbler = async () => {
@@ -71,7 +75,27 @@ export default function ProductDetails () {
         }));
     }
 
+    const handleEdit = () => {
+        navigate(`/catalog/${wobblerId}/edit`);
+    };
+
+    const handleDelete = async () => {
+        if (!user || !isAuthenticated) return setError('You must be logged in.');
+        if (wobbler?.createdByUserId !== user.uid) return setError('You are not authorized to delete this wobbler.');
+    
+        try {
+            const docRef = doc(db, "catalog", wobblerId);
+            await deleteDoc(docRef);
+            alert('Wobbler deleted successfully!');
+            navigate('/catalog'); // Redirect after deletion
+        } catch (error) {
+            setError('Error deleting wobbler: ' + error.message);
+        }
+    };
+
     if (loading) return <p>Loading...</p>;// add proper loading
+
+    const isCreator = isAuthenticated && user?.uid === wobbler?.createdByUserId;
 
     return (
         <div className="bg-white">
@@ -137,6 +161,26 @@ export default function ProductDetails () {
                             >
                                 +1 Fish Count
                             </button>
+
+                            {isCreator && (
+                                <>
+                                    <button
+                                        type="button"
+                                        className="mt-4 flex w-full items-center justify-center rounded-md border border-transparent bg-yellow-500 px-8 py-3 text-base font-medium text-white hover:bg-yellow-600 focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2"
+                                        onClick={handleEdit}
+                                    >
+                                        Edit Wobbler
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        className="mt-4 flex w-full items-center justify-center rounded-md border border-transparent bg-red-600 px-8 py-3 text-base font-medium text-white hover:bg-red-700 focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+                                        onClick={handleDelete}
+                                    >
+                                        Delete Wobbler
+                                    </button>
+                                </>
+                            )}
                         </form>
                     </div>
 
