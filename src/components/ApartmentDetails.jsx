@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router'
+import { useParams, useNavigate } from 'react-router'
 import { doc, getDoc} from 'firebase/firestore'
 import { db } from '../../config/firebaseinit'
 import { useAuth } from '../../ctx/FirebaseAuth'
 
 export default function ApartmentDetails () {
+    const [showPhone, setShowPhone] = useState(false);
     const { apartmentId } = useParams();
     const [apartment, setApartment] = useState({})
     const [loading, setLoading] = useState(true)
     const { user, isAuthenticated } = useAuth(); //! auth ctx
 
+    const navigate = useNavigate()
 
     useEffect(() => {
         const fetchApartment = async () => {
@@ -26,6 +28,14 @@ export default function ApartmentDetails () {
 
         fetchApartment();
     }, [apartmentId]);
+
+    const handlePhoneBtn = () => {
+        if (isAuthenticated) {
+            setShowPhone(!showPhone);
+        } else {
+            navigate("/login"); // Redirect to login if not auth
+        }
+    };
 
     if (loading) return <p>Loading...</p>;// add proper loading
 
@@ -59,6 +69,8 @@ export default function ApartmentDetails () {
                     />
                     </div>
 
+                    
+
                 {/* Apartment info */}
                 <div className="mx-auto max-w-2xl px-4 pt-10 pb-16 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto_auto_1fr] lg:gap-x-8 lg:px-8 lg:pt-16 lg:pb-24">
                     
@@ -66,6 +78,23 @@ export default function ApartmentDetails () {
                         <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{apartment.name}</h1>
                     </div>
 
+                        <div className="mt-4 lg:row-span-3 lg:mt-0">
+                            <div className="mt-10">
+                                <button
+                                    type="button"
+                                    className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-none"
+                                    onClick={handlePhoneBtn}
+                                >
+                                {showPhone ? "Hide Phone Number" : "Call us for a reservation"}
+                                </button>
+
+                                {isAuthenticated && showPhone && (
+                                    <p className="mt-4 text-center text-lg font-medium text-gray-900">
+                                        📞 +359 88 123 4567
+                                    </p>
+                                )}
+                            </div>
+                        </div>
                     {/* img */}
                     {/* <div className="mt-4 lg:row-span-3 lg:mt-0">
                         <h2 className="sr-only">Apartment information</h2>
