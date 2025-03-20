@@ -32,14 +32,42 @@ export default function ApartmentDetails () {
     return (
         <div className="bg-white">
             <div className="pt-6">
-                {/* Wobbler info */}
+                
+                {/* Image gallery */}
+                <div className="mx-auto mt-20 max-w-2xl sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-3 lg:gap-x-8">
+                    <img
+                        alt={apartment.name}
+                        src={apartment.imgUrl}
+                        className="hidden size-full rounded-lg object-cover lg:block"
+                    />
+                    <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
+                        <img
+                        alt={apartment.name}
+                        src={apartment.imgUrl}
+                        className="aspect-3/2 w-full rounded-lg object-cover"
+                        />
+                        <img
+                        alt={apartment.name}
+                        src={apartment.imgUrl}
+                        className="aspect-3/2 w-full rounded-lg object-cover"
+                        />
+                    </div>
+                    <img
+                        alt={apartment.name}
+                        src={apartment.imgUrl}
+                        className="aspect-4/5 size-full object-cover sm:rounded-lg lg:aspect-auto"
+                    />
+                    </div>
+
+                {/* Apartment info */}
                 <div className="mx-auto max-w-2xl px-4 pt-10 pb-16 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto_auto_1fr] lg:gap-x-8 lg:px-8 lg:pt-16 lg:pb-24">
+                    
                     <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
                         <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{apartment.name}</h1>
                     </div>
 
                     {/* img */}
-                    <div className="mt-4 lg:row-span-3 lg:mt-0">
+                    {/* <div className="mt-4 lg:row-span-3 lg:mt-0">
                         <h2 className="sr-only">Apartment information</h2>
 
                         <img
@@ -47,8 +75,9 @@ export default function ApartmentDetails () {
                             src={apartment.imgUrl}
                             className="aspect-4/5 object-cover sm:rounded-lg lg:aspect-auto"
                         />
-                    </div>
+                    </div> */}
 
+                        
                     <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pt-6 lg:pr-8 lg:pb-16">
                         {/* Description */}
                         {/* <div>
