@@ -10,9 +10,6 @@ import Register from './components/Register';
 import Login from './components/Login';
 import Logout from './components/Logout';
 import Contacts from './components/Contacts';
-import Pricing from './components/Pricing';
-import IndividualPricing from './components/IndividualPricing';
-import BusinessPricing from './components/BusinessPricing';
 import NotFound from './components/NotFound';
 import Catalog from './components/Catalog';
 import CreateWobbler from './components/CreateWobbler';
@@ -24,6 +21,8 @@ import Next15Days from './components/Next15Days';
 import Footer from './components/Footer';
 
 import './App.css'
+import Apartments from './components/Apartments';
+import ApartmentDetails from './components/ApartmentDetails';
 
 
 function App() {
@@ -46,10 +45,8 @@ function App() {
                 <Route path="/catalog/:wobblerId" element={<ProductDetails />} />
                 <Route path="/catalog/:wobblerId/edit" element={<EditWobbler />} />
                 <Route path="/contacts" element={<Contacts />} />
-                <Route path="/pricing" element={<Pricing />}>
-                    <Route index element={<IndividualPricing />} />
-                    <Route path='business' element={<BusinessPricing />} />
-                </Route>
+                <Route path="/apartments" element={<Apartments />}/>
+                <Route path="/apartments/:apartmentId" element={<ApartmentDetails />}/>
                 <Route path="/weather" element={<Weather />}>
                     <Route index element={<CurrentWeather/>}/>
                     <Route path='next15Days' element={<Next15Days/>}/>
