@@ -20,7 +20,10 @@ export default function EditWobbler() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!isAuthenticated || !user) return; // Wait for authentication
+        if (!isAuthenticated || !user){
+            navigate('/login')
+            return;
+        }
 
         const fetchWobbler = async () => {
             try{

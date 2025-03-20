@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { useAuth } from '../../ctx/FirebaseAuth'
+import { useNavigate } from "react-router"
 
 export default function Next15Days() {
 
@@ -9,7 +11,15 @@ export default function Next15Days() {
   const [lastCity, setLastCity] = useState("");
   const [selectedDay, setSelectedDay] = useState(null);
 
+  const { user, isAuthenticated } = useAuth(); //! auth ctx
+
+  const navigate = useNavigate();
+
   const fetchWeather = async () => {
+    if (!isAuthenticated) {
+      navigate("/login");
+      return
+  }
     if (!city || city === lastCity) return;
     setLoading(true);
     setError();
@@ -21,7 +31,7 @@ export default function Next15Days() {
 
       const data = await response.json();
       setWeather(data.days);
-      console.log(data.days);
+      // console.log(data.days);
       
     } catch (err) {
       setError(err.message);

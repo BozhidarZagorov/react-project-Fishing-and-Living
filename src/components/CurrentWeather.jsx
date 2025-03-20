@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { useAuth } from '../../ctx/FirebaseAuth'
+import { useNavigate } from "react-router"
 
 export default function CurrentWeather() {
 
@@ -7,8 +9,16 @@ export default function CurrentWeather() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
   const [lastCity, setLastCity] = useState(""); //last city
+  
+  const { user, isAuthenticated } = useAuth(); //! auth ctx
+
+  const navigate = useNavigate();
 
   const fetchWeather = async () => {
+    if (!isAuthenticated) {
+        navigate("/login");
+        return
+    }
     if (!city || city === lastCity) return;
     setLoading(true);
     setError();
@@ -20,7 +30,6 @@ export default function CurrentWeather() {
 
       const data = await response.json();
       setWeather(data);
-      console.log(data.days);
       
     } catch (err) {
       setError(err.message);

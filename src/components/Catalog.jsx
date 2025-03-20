@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import { Link, useSearchParams } from "react-router"
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../config/firebaseinit";
+import { useAuth } from '../../ctx/FirebaseAuth'
+import { useNavigate } from "react-router"
 
 import {
     Menu,
@@ -27,6 +29,10 @@ export default function Catalog() {
     const [wobblers, setWobblers] = useState([]);
     const [displayWobblers, setDisplayWobblers] = useState([]);
 
+    const { user, isAuthenticated } = useAuth(); //! auth ctx
+
+    const navigate = useNavigate();
+
     useEffect(() => {
         const fetchWobblers = async () => {
             const querySnapshot = await getDocs(collection(db, "catalog")); // ✅ Fetch from "wobblers"
@@ -51,6 +57,14 @@ export default function Catalog() {
         }
     }, [wobblers, searchParams])
 
+    const handleAddWobblerBtn = () => {
+        if (!isAuthenticated) {
+            navigate("/login");
+        } else {
+            navigate("/catalog/addWobbler");
+        }
+    }
+
     return (
         <div className="bg-white">
 
@@ -60,12 +74,9 @@ export default function Catalog() {
 
                 <div className="flex justify-center bg-white px-6 py-8 lg:px-8">
                     <div className="flex gap-x-12">
-                        <Link
-                            to="/catalog/addWobbler"
-                            className="btn-orange"
-                        >
+                        <button onClick={handleAddWobblerBtn} className="btn-orange">
                             Add Wobbler
-                        </Link>
+                        </button>
                     </div>
                 </div>
 

@@ -47,7 +47,10 @@ export default function ProductDetails () {
 
 
     const handleLike = async () => {
-        if (!isAuthenticated || hasLiked) return; // Prevent like if not auth or already liked
+        if (!isAuthenticated){
+            navigate('/login')
+        }
+        if(hasLiked) return; // Prevent like if not auth or already liked
 
         const docRef = doc(db, "catalog", wobblerId);
         await updateDoc(docRef, {
@@ -64,6 +67,9 @@ export default function ProductDetails () {
     }
 
     const handleFishCount = async () => {
+        if (!isAuthenticated) {
+            navigate('/login')
+        }
         const docRef = doc(db, "catalog", wobblerId);
         await updateDoc(docRef, {
             fishCount: wobbler.fishCount + 1
@@ -75,7 +81,11 @@ export default function ProductDetails () {
     }
 
     const handleEdit = () => {
-        navigate(`/catalog/${wobblerId}/edit`);
+        if (isAuthenticated) {
+            navigate(`/catalog/${wobblerId}/edit`);
+        }else{
+            navigate('/login')
+        }
     };
 
     const handleDelete = async () => {
