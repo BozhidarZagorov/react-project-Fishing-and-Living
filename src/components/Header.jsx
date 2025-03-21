@@ -59,7 +59,6 @@ export default function Header() {
                 </div>
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end">
                     <div className="flex flex-row items-end space-x-2">
-                        {/* //todo change visibility  -> logout when logged in / login and register when logged out */}
                         {isAuthenticated ? (
                             <Link to="/logout" className="btn-orange">
                                 Log out <span aria-hidden="true">&rarr;</span>
