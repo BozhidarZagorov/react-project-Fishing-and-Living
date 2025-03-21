@@ -60,6 +60,7 @@ export default function Catalog() {
     const handleAddWobblerBtn = () => {
         if (!isAuthenticated) {
             navigate("/login");
+            return alert('You must be logged in to add wobblers.');
         } else {
             navigate("/catalog/addWobbler");
         }

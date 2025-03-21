@@ -7,45 +7,6 @@ import { useAuth } from '../../ctx/FirebaseAuth'
 import { CheckIcon } from '@heroicons/react/20/solid'
 import { UserIcon } from '@heroicons/react/24/solid';
 
-const tiers = [
-    {
-        name: 'Apartment 2',
-        id: 'apartment2',
-        href: '/apartments/apartment2',
-        priceMonthly: '50',
-        description: "The perfect apartment for your stay",
-        features: [
-            'Up to 3 people',
-            '3 single-size bed',
-            'Kitchenette',
-            'Terrace',
-            'Seperate bathroom',
-            'Access to the barbeque',
-            'Access to the fitness',
-        ],
-        featured: false,
-    },
-    {
-        name: 'Apartment 1',
-        id: 'apartment1',
-        href: '/apartments/apartment1',
-        priceMonthly: '50',
-        description: "The perfect apartment for your stay",
-        features: [
-            'Up to 4 people',
-            '1 Queen-size bed',
-            '2 single-size bed',
-            'Kitchenette',
-            'Terrace',
-            'TV in each room',
-            'Seperate bathroom',
-            'Access to the barbeque',
-            'Access to the fitness',
-        ],
-        featured: true,
-    },
-]
-
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }

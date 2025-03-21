@@ -18,7 +18,7 @@ export default function Next15Days() {
   const fetchWeather = async () => {
     if (!isAuthenticated) {
       navigate("/login");
-      return
+      return alert('You must be logged in to check weather forecast.');
   }
     if (!city || city === lastCity) return;
     setLoading(true);

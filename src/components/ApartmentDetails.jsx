@@ -34,6 +34,7 @@ export default function ApartmentDetails () {
             setShowPhone(!showPhone);
         } else {
             navigate("/login"); // Redirect to login if not auth
+            return alert('You must be logged in to access the phone number.');
         }
     };
 

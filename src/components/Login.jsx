@@ -1,14 +1,23 @@
-import React, {useRef,useState} from "react";
+import {useRef,useState,useEffect} from "react";
 import { Link, useNavigate } from "react-router";
 import { auth } from "../../config/firebaseinit";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { useAuth } from '../../ctx/FirebaseAuth'
 
 export default function Login (){
   const emailRef = useRef();
   const passwordRef = useRef();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const { user, isAuthenticated } = useAuth(); //! auth ctx
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated || user) {
+      navigate("/");
+      return alert('You are already logged in.');
+    }
+  }, [isAuthenticated, user, navigate]);
 
   const handleLogin = async (e) => {
     e.preventDefault();

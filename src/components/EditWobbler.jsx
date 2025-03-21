@@ -22,7 +22,7 @@ export default function EditWobbler() {
     useEffect(() => {
         if (!isAuthenticated || !user){
             navigate('/login')
-            return;
+            return alert('You must be logged in to edit this wobbler.');
         }
 
         const fetchWobbler = async () => {
@@ -61,7 +61,7 @@ export default function EditWobbler() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!user || !isAuthenticated) return setError('You must be logged in.');
+        if (!user || !isAuthenticated) return alert('You must be logged in to edit this wobbler.')
 
         if (!title || !imgUrl) {
             setError('Title and Image URL are required.');

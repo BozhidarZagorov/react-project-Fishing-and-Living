@@ -17,7 +17,7 @@ export default function CurrentWeather() {
   const fetchWeather = async () => {
     if (!isAuthenticated) {
         navigate("/login");
-        return
+        return alert('You must be logged in to check weather conditions.');
     }
     if (!city || city === lastCity) return;
     setLoading(true);

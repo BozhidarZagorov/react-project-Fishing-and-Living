@@ -1,7 +1,8 @@
-import React, { useRef, useState } from "react"
+import { useRef, useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router"
 import { auth } from "../../config/firebaseinit"
 import { createUserWithEmailAndPassword } from "firebase/auth"
+import { useAuth } from '../../ctx/FirebaseAuth'
 
 export default function Register (){
   const emailRef = useRef();
@@ -10,7 +11,15 @@ export default function Register (){
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-
+  const { user, isAuthenticated } = useAuth(); //! auth ctx
+  
+  useEffect(() => {
+    if (isAuthenticated || user) {
+      navigate("/");
+      return alert('You are already logged in.');
+    }
+  }, [isAuthenticated, user, navigate]);
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -21,7 +30,7 @@ export default function Register (){
 
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      console.log("User registered:", email);
+      // console.log("User registered:", email);
       navigate("/"); // Redirect to Home
     } catch (err) {
 

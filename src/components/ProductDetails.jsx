@@ -49,6 +49,7 @@ export default function ProductDetails () {
     const handleLike = async () => {
         if (!isAuthenticated){
             navigate('/login')
+            return alert('You must be logged in to like this wobbler.');
         }
         if(hasLiked) return; // Prevent like if not auth or already liked
 
@@ -69,6 +70,7 @@ export default function ProductDetails () {
     const handleFishCount = async () => {
         if (!isAuthenticated) {
             navigate('/login')
+            return alert('You must be logged in add fishes to the count.');
         }
         const docRef = doc(db, "catalog", wobblerId);
         await updateDoc(docRef, {
@@ -85,17 +87,20 @@ export default function ProductDetails () {
             navigate(`/catalog/${wobblerId}/edit`);
         }else{
             navigate('/login')
+            return alert('You must be logged in to edit this wobbler.')
         }
     };
 
     const handleDelete = async () => {
-        if (!user || !isAuthenticated) return setError('You must be logged in.');
-        if (wobbler?.createdByUserId !== user.uid) return setError('You are not authorized to delete this wobbler.');
+        if (!user || !isAuthenticated){
+            navigate('/login')
+            return alert('You must be logged in to delete this wobbler.');
+        }
+        if (wobbler?.createdByUserId !== user.uid) return alert('You are not authorized to delete this wobbler.');
     
         try {
             const docRef = doc(db, "catalog", wobblerId);
             await deleteDoc(docRef);
-            alert('Wobbler deleted successfully!');
             navigate('/catalog'); // Redirect after deletion
         } catch (error) {
             setError('Error deleting wobbler: ' + error.message);
