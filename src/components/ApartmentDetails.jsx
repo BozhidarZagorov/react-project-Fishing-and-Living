@@ -48,24 +48,24 @@ export default function ApartmentDetails () {
                 <div className="mx-auto mt-20 max-w-2xl sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-3 lg:gap-x-8">
                     <img
                         alt={apartment.name}
-                        src={apartment.imgUrl}
+                        src={apartment.imgsUrl[0]}
                         className="hidden size-full rounded-lg object-cover lg:block"
                     />
                     <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
                         <img
                         alt={apartment.name}
-                        src={apartment.imgUrl}
+                        src={apartment.imgsUrl[1]}
                         className="aspect-3/2 w-full rounded-lg object-cover"
                         />
                         <img
                         alt={apartment.name}
-                        src={apartment.imgUrl}
+                        src={apartment.imgsUrl[2]}
                         className="aspect-3/2 w-full rounded-lg object-cover"
                         />
                     </div>
                     <img
                         alt={apartment.name}
-                        src={apartment.imgUrl}
+                        src={apartment.imgsUrl[3]}
                         className="aspect-4/5 size-full object-cover sm:rounded-lg lg:aspect-auto"
                     />
                     </div>
