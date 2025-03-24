@@ -109,16 +109,16 @@ export default function ApartmentDetails () {
 
                         
                     <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pt-6 lg:pr-8 lg:pb-16">
-                        {/* Description */}
-                        {/* <div>
-                            <h3 className="sr-only">Description</h3>
+                        {/* Details */}
+                        <div>
+                            <h3 className="sr-only">Details</h3>
                             <div className="space-y-6">
-                                <p className="text-base text-gray-900">{wobbler.description || 'No description available.'}</p>
+                                <p className="text-base text-gray-900">{apartment.details || 'No details available.'}</p>
                             </div>
-                        </div> */}
+                        </div>
 
                         {/* Highlights */}
-                        <div className="mt-10">
+                        {/* <div className="mt-10">
                             <h3 className="text-sm font-medium text-gray-900">Highlights</h3>
                             <div className="mt-4">
                                 <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
@@ -130,7 +130,7 @@ export default function ApartmentDetails () {
                                     </li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

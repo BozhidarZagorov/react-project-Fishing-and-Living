@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router'
 export default function CreateWobbler() {
     const [title, setTitle] = useState('');
     const [imgUrl, setImgUrl] = useState('');
+    const [details, setDetails] = useState('');
     const [likes, setLikes] = useState(0);
     const [fishCount, setFishCount] = useState(0);
     const [loading, setLoading] = useState(false);
@@ -32,6 +33,7 @@ export default function CreateWobbler() {
             const docRef = await addDoc(collection(db, "catalog"), {
                 title: title,
                 imgUrl: imgUrl,
+                details: details,
                 likes: likes,
                 fishCount: fishCount,
                 likedByUserId: [], // Initialize with an empty array for tracking likes
@@ -73,10 +75,10 @@ export default function CreateWobbler() {
             {error && <p className="text-red-500 mb-4">{error}</p>}
 
             <form onSubmit={handleSubmit} className="mx-auto mt-16 max-w-xl sm:mt-20">
-            <div className="sm:col-span-2">
 
+            <div className="sm:col-span-2">
                 <div> 
-                    <label htmlFor="title" className="block text-sm/6 font-semibold text-gray-900">Title</label>
+                    <label htmlFor="title" className="block text-sm/6 font-semibold text-gray-900">Wobbler Name</label>
                     <div className='mt-2.5'>
                     <input
                         type="text"
@@ -101,6 +103,20 @@ export default function CreateWobbler() {
                     />
                     </div>
                 </div>
+                <div className="sm:col-span-2">
+                    <label htmlFor="details" className="block text-sm/6 font-semibold text-gray-900">Wobbler Details</label>
+                    <div className="mt-2.5">
+                    <input
+                        type="text"
+                        id="details"
+                        value={details}
+                        onChange={(e) => setDetails(e.target.value)}
+                        className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+                        required
+                    />
+                    </div>
+                </div>
+
                 <div className="mt-10">
                 <button
                     type="submit"
