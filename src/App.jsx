@@ -11,18 +11,21 @@ import Login from './components/Login';
 import Logout from './components/Logout';
 import Contacts from './components/Contacts';
 import NotFound from './components/NotFound';
+import Gallery from './components/Gallery';
+import GalleryAddPicture from './components/GalleryAddPicture';
+import GalleryPicture from './components/GalleryPicture';
 import Catalog from './components/Catalog';
 import CreateWobbler from './components/CreateWobbler';
 import EditWobbler from './components/EditWobbler';
 import ProductDetails from './components/ProductDetails';
+import Apartments from './components/Apartments';
+import ApartmentDetails from './components/ApartmentDetails';
 import Weather from './components/weather';
 import CurrentWeather from './components/CurrentWeather';
 import Next15Days from './components/Next15Days';
 import Footer from './components/Footer';
 
 import './App.css'
-import Apartments from './components/Apartments';
-import ApartmentDetails from './components/ApartmentDetails';
 
 
 function App() {
@@ -44,6 +47,9 @@ function App() {
                 <Route path="/catalog/addWobbler" element={<CreateWobbler/>} />
                 <Route path="/catalog/:wobblerId" element={<ProductDetails />} />
                 <Route path="/catalog/:wobblerId/edit" element={<EditWobbler />} />
+                <Route path="/gallery" element={<Gallery />} />
+                <Route path="/gallery/addPicture" element={<GalleryAddPicture/>} />
+                <Route path="/gallery/:pictureId" element={<GalleryPicture />} />
                 <Route path="/contacts" element={<Contacts />} />
                 <Route path="/apartments" element={<Apartments />}/>
                 <Route path="/apartments/:apartmentId" element={<ApartmentDetails />}/>
