@@ -35,7 +35,7 @@ export default function Catalog() {
 
     useEffect(() => {
         const fetchWobblers = async () => {
-            const querySnapshot = await getDocs(collection(db, "catalog")); // ✅ Fetch from "wobblers"
+            const querySnapshot = await getDocs(collection(db, "catalog")); // Fetch from "wobblers" firebase db
             const wobblerList = querySnapshot.docs.map(doc => ({
                 id: doc.id,
                 ...doc.data()

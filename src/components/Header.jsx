@@ -10,7 +10,7 @@ const navigation = [
     { name: 'Home', path: '/' },
     { name: 'Catalog', path: '/catalog' },
     { name: 'Apartments', path: '/apartments' },
-    { name: 'Contacts', path: '/contacts' },
+    { name: 'Gallery', path: '/gallery' },
     { name: 'Weather', path: '/weather' },
 ]
 
