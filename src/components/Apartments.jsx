@@ -40,15 +40,20 @@ export default function Apartments() {
     return (
         <div className="relative isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
         <>
-            <div aria-hidden="true" className="absolute inset-x-0 -top-3 -z-10 transform-gpu overflow-hidden px-36 blur-3xl">
-                <div
-                    style={{
-                        clipPath:
-                            'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-                    }}
-                    className="mx-auto aspect-1155/678 w-[72.1875rem] bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30"
-                />
-            </div>
+            {/* Background image */}
+            <div aria-hidden="true" className="absolute inset-0 -z-10 transform-gpu overflow-hidden">
+                    <div
+                        style={{
+                            backgroundImage: 'url(/apartments.png)',  // Replace with your image URL
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                            width: '100%',
+                            height: '100%',  // Make it cover the full page height
+                            opacity: 1,  // Remove blur and opacity
+                        }}
+                        className="absolute inset-0"
+                    />
+                </div>
             <div className="mx-auto max-w-4xl text-center">
                 <p className="mt-2 text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-6xl">
                     Rent an apartment
@@ -62,7 +67,7 @@ export default function Apartments() {
                     <div
                         key={apartment.key}
                         className={classNames(
-                            apartment.featured ? 'relative bg-gray-900 shadow-2xl' : 'bg-white/60 sm:mx-8 lg:mx-0',
+                            apartment.featured ? 'relative bg-gray-900 shadow-2xl' : 'bg-white/80 sm:mx-8 lg:mx-0',
                             apartment.featured
                                 ? ''
                                 : idx === 0
@@ -86,17 +91,17 @@ export default function Apartments() {
                             >
                                 {apartment.priceDaily}
                             </span>
-                            <span className={classNames(apartment.featured ? 'text-gray-400' : 'text-gray-500', 'text-base')}>
+                            <span className={classNames(apartment.featured ? 'text-gray-400' : 'text-white-900', 'text-base')}>
                                 leva<UserIcon className="inline-block w-5 h-5 text-gray-500 ml-1" /> / day
                             </span>
                         </p>
-                        <p className={classNames(apartment.featured ? 'text-gray-300' : 'text-gray-600', 'mt-6 text-base/7')}>
+                        <p className={classNames(apartment.featured ? 'text-gray-300' : 'text-white-900', 'mt-6 text-base/7')}>
                             {apartment.description}
                         </p>
                         <ul
                             role="list"
                             className={classNames(
-                                apartment.featured ? 'text-gray-300' : 'text-gray-600',
+                                apartment.featured ? 'text-gray-300' : 'text-white-900',
                                 'mt-8 space-y-3 text-sm/6 sm:mt-10',
                             )}
                         >

@@ -41,7 +41,7 @@ export default function ApartmentDetails () {
     if (loading) return <p>Loading...</p>;// add proper loading
 
     return (
-        <div className="bg-white">
+        <div className="bg-gray-200">
             <div className="pt-6">
                 
                 {/* Image gallery */}
