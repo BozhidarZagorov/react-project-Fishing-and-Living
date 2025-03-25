@@ -67,13 +67,13 @@ export default function Catalog() {
     }
 
     return (
-        <div className="bg-white">
+        <div className="bg-gray-200">
 
 
             <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
                 <h2 className="sr-only">Wobblers</h2>
 
-                <div className="flex justify-center bg-white px-6 py-8 lg:px-8">
+                <div className="flex justify-center px-6 py-8 lg:px-8">
                     <div className="flex gap-x-12">
                         <button onClick={handleAddWobblerBtn} className="btn-orange">
                             Add Wobbler
