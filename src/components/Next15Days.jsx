@@ -31,7 +31,7 @@ export default function Next15Days() {
 
       const data = await response.json();
       setWeather(data.days);
-      // console.log(data.days);
+      console.log(data.days);
       
     } catch (err) {
       setError(err.message);
@@ -81,7 +81,8 @@ export default function Next15Days() {
               <p className="text-sm">🌡 {day.temp}°C</p>
               <p className="text-xs">💦 Humidity: {day.humidity}%</p>
               <p className="text-xs">💨 Wind: {day.windspeed} m/s</p>
-              <p className="text-xs">⚖️ Pressure: {day.pressure} hPa</p>
+              <p className="text-xs">🌅 Sunrise: {day.sunrise}</p>
+              <p className="text-xs">🌇 Sunset: {day.sunset}</p>
 
               {/* Details Button */}
               <button
@@ -102,14 +103,15 @@ export default function Next15Days() {
             <p className="text-sm">🌡 {weather[selectedDay].temp}°C</p>
             <p className="text-xs">💦 Humidity: {weather[selectedDay].humidity}%</p>
             <p className="text-xs">💨 Wind: {weather[selectedDay].windspeed} m/s</p>
-            <p className="text-xs">⚖️ Pressure: {weather[selectedDay].pressure} hPa</p>
+            <p className="text-xs">🌅 Sunrise: {weather[selectedDay].sunrise}</p>
+            <p className="text-xs">🌇 Sunset: {weather[selectedDay].sunset}</p>
 
               <button className="btn-orange mt-2" onClick={() => setSelectedDay(null)}>
                 Hide Details
               </button>
           </div>
 
-        {/* Hourly Details Table (Below the selected day) */}
+        {/* Hourly Details Table */}
         {weather[selectedDay].hours && (
           <div className="mt-6 p-4 border-t border-gray-600 w-full max-w-4xl">
             <h3 className="text-xl font-bold text-center">Hourly Forecast for {weather[selectedDay].datetime}</h3>
@@ -120,7 +122,9 @@ export default function Next15Days() {
                       <th className="p-2 border border-gray-700">Time</th>
                       <th className="p-2 border border-gray-700">Temp (°C)</th>
                       <th className="p-2 border border-gray-700">Humidity (%)</th>
+                      <th className="p-2 border border-gray-700">Pressure (bar)</th>
                       <th className="p-2 border border-gray-700">Wind (m/s)</th>
+                      <th className="p-2 border border-gray-700">UV</th>
                       <th className="p-2 border border-gray-700">Conditions</th>
                     </tr>
                   </thead>
@@ -130,7 +134,9 @@ export default function Next15Days() {
                       <td className="p-2 border border-gray-700">{hour.datetime}</td>
                       <td className="p-2 border border-gray-700">{hour.temp}</td>
                       <td className="p-2 border border-gray-700">{hour.humidity}</td>
+                      <td className="p-2 border border-gray-700">{((hour.pressure)*0.001).toFixed(3)}</td>
                       <td className="p-2 border border-gray-700">{hour.windspeed}</td>
+                      <td className="p-2 border border-gray-700">{hour.uvindex}</td>
                       <td className="p-2 border border-gray-700">{hour.conditions}</td>
                     </tr>
                   ))}
