@@ -34,7 +34,7 @@ function App() {
     <AuthProvider>
         <div className="bg-white flex flex-col min-h-screen">
 
-            <main className="flex-grow">
+            <main className="flex-grow bg-gray-200">
 
             <Header />
 
