@@ -2,6 +2,14 @@ import { useState } from "react";
 import { useAuth } from '../../ctx/FirebaseAuth'
 import { useNavigate } from "react-router"
 
+const weatherIcons = {
+  'partly-cloudy-day': "☁️",
+  rain: "🌧️",
+  snow: "❄️",
+  sunny: "☀️",
+  thunder: "⛈️"
+};
+
 export default function Next15Days() {
 
   const [city, setCity] = useState("");
@@ -77,7 +85,10 @@ export default function Next15Days() {
             <div key={index} className="p-3 rounded-lg shadow-md text-center border border-gray-700 bg-gray-900 text-white">
               <h2 className="text-lg font-semibold">{day.datetime}</h2>
               <p className="text-sm">{day.conditions}</p>
-              <img src={`${day.icon}.png`} alt="Weather Icon" className="mx-auto w-10 h-10" />
+              {/* <img src={`${day.icon}.png`} alt="Weather Icon" className="mx-auto w-10 h-10"/> */}
+              <span className="mx-auto w-10 h-10">
+              {weatherIcons[day.icon] || "❓"} {/* Fallback icon */}
+              </span>
               <p className="text-sm">🌡 {day.temp}°C</p>
               <p className="text-xs">💦 Humidity: {day.humidity}%</p>
               <p className="text-xs">💨 Wind: {day.windspeed} m/s</p>
@@ -95,11 +106,14 @@ export default function Next15Days() {
           ))}
         </div>
       ) : (
-        <div className="flex flex-col items-center">
+        <div className="mt-4 flex flex-col items-center">
           <div className="p-3 rounded-lg shadow-md text-center border border-gray-700 bg-gray-900 text-white w-80">
             <h2 className="text-lg font-semibold">{weather[selectedDay].datetime}</h2>
             <p className="text-sm">{weather[selectedDay].conditions}</p>
-            <img src={`${weather[selectedDay].icon}.png`} alt="Weather Icon" className="mx-auto w-10 h-10" />
+            {/* <img src={`${weather[selectedDay].icon}.png`} alt="Weather Icon" className="mx-auto w-10 h-10" /> */}
+            <span className="mx-auto w-10 h-10">
+            {weatherIcons[weather[selectedDay].icon] || "❓"} {/* Fallback icon */}
+            </span>
             <p className="text-sm">🌡 {weather[selectedDay].temp}°C</p>
             <p className="text-xs">💦 Humidity: {weather[selectedDay].humidity}%</p>
             <p className="text-xs">💨 Wind: {weather[selectedDay].windspeed} m/s</p>

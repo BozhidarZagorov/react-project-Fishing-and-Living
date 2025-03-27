@@ -2,6 +2,14 @@ import { useState } from "react";
 import { useAuth } from '../../ctx/FirebaseAuth'
 import { useNavigate } from "react-router"
 
+const weatherIcons = {
+  'partly-cloudy-day': "☁️",
+  rain: "🌧️",
+  snow: "❄️",
+  sunny: "☀️",
+  thunder: "⛈️"
+};
+
 export default function CurrentWeather() {
 
   const [city, setCity] = useState("");
@@ -76,7 +84,10 @@ export default function CurrentWeather() {
             
           <h2 className="text-2xl font-semibold text-gray-900">{weather.resolvedAddress} {weather.currentConditions.datetime}</h2>
           <p className="text-lg">{weather.currentConditions.conditions}</p>
-          <img src={weather.currentConditions.icon} alt="Weather Icon" className="mx-auto" />
+          {/* <img src={weather.currentConditions.icon} alt="Weather Icon" className="mx-auto" /> */}
+          <span className="mx-auto w-10 h-10">
+          {weatherIcons[weather.currentConditions.icon] || "❓"} {/* Fallback icon */}
+          </span>
           <p className="text-lg">💦 Humidity: {weather.currentConditions.humidity}%</p>
           <p className="text-lg">💨 speed: {weather.currentConditions.windspeed} m/s</p>
           <p className="text-lg">⚖️ pressure: {((weather.currentConditions.pressure)*0.001).toFixed(3)} bar</p>
