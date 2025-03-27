@@ -5,7 +5,7 @@ export default function Home() {
         <div className="background-container">
             <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
                 <div className="hidden sm:flex sm:justify-center mb-6">
-                <div className="relative rounded-full px-3 py-1 text-sm/6 text-white ring-1 ring-white hover:ring-blue-500">
+                <div className="relative rounded-full px-3 py-1 text-sm/6 text-white ring-1 ring-white hover:ring-orange-400">
                        Check the weather forecast before your reservation.{' '}
                       <Link to="/weather" className="font-semibold text-orange-400">
                          <span aria-hidden="true" className="absolute inset-0" />

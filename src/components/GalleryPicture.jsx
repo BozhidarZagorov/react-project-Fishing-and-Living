@@ -95,7 +95,7 @@ export default function GalleryPicture () {
     const isCreator = isAuthenticated && user?.uid === picture?.createdByUserId;
 
     return (
-        <div className="bg-white min-h-screen flex flex-col justify-center items-center">
+        <div className="min-h-screen flex flex-col justify-center items-center">
                 <div className="w-full max-w-4xl p-6">
                 {/* picture info */}
                 <div className="flex flex-col items-center">
