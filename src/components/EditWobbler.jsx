@@ -11,6 +11,7 @@ export default function EditWobbler() {
     const { user, isAuthenticated } = useAuth(); //! auth ctx
     const [wobbler, setWobbler] = useState({});
     const [title, setTitle] = useState('');
+    const [details, setDetails] = useState('');
     const [imgUrl, setImgUrl] = useState('');
     const [likes, setLikes] = useState(0);
     const [fishCount, setFishCount] = useState(0);
@@ -36,6 +37,7 @@ export default function EditWobbler() {
                 
                 setWobbler(data);
                 setTitle(data.title);
+                setDetails(data.details);
                 setImgUrl(data.imgUrl);
                 setLikes(data.likes);
                 setFishCount(data.fishCount);
@@ -63,7 +65,7 @@ export default function EditWobbler() {
 
         if (!user || !isAuthenticated) return alert('You must be logged in to edit this wobbler.')
 
-        if (!title || !imgUrl) {
+        if (!title || !details) {
             setError('Title and Image URL are required.');
             return;
         }
@@ -73,6 +75,7 @@ export default function EditWobbler() {
 
             await updateDoc(docRef, {
                 title: title,
+                details: details,
                 imgUrl: imgUrl,
                 likes: likes,
                 fishCount: fishCount,
@@ -109,7 +112,7 @@ export default function EditWobbler() {
             <form onSubmit={handleSubmit} className="mx-auto mt-16 max-w-xl sm:mt-20">
             <div className="sm:col-span-2">
                 <div>
-                    <label htmlFor="title" className="block text-sm font-medium text-gray-700">Title</label>
+                    <label htmlFor="title" className="block text-sm font-medium text-gray-700">Wobbler Title</label>
                     <div className='mt-2.5'>
                     <input
                         type="text"
@@ -122,13 +125,13 @@ export default function EditWobbler() {
                 </div>
 
                 <div className="sm:col-span-2">
-                    <label htmlFor="imgUrl" className="block text-sm/6 font-semibold text-gray-900">Image URL</label>
+                    <label className="block text-sm/6 font-semibold text-gray-900">Wobbler Details</label>
                     <div className="mt-2.5">
                     <input
-                        type="url"
-                        id="imgUrl"
-                        value={imgUrl}
-                        onChange={(e) => setImgUrl(e.target.value)}
+                        type="text"
+                        id="details"
+                        value={details}
+                        onChange={(e) => setDetails(e.target.value)}
                         className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
                         />
                     </div>
