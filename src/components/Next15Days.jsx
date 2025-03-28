@@ -147,7 +147,7 @@ export default function Next15Days() {
                     <tr key={hourIndex} className="text-center border-t border-gray-700">
                       <td className="p-2 border border-gray-700">{hour.datetime}</td>
                       <td className="p-2 border border-gray-700">{hour.temp}</td>
-                      <td className="p-2 border border-gray-700">{hour.humidity}</td>
+                      <td className="p-2 border border-gray-700">{hour.humidity}%</td>
                       <td className="p-2 border border-gray-700">{((hour.pressure)*0.001).toFixed(3)}</td>
                       <td className="p-2 border border-gray-700">{hour.windspeed}</td>
                       <td className="p-2 border border-gray-700">{hour.uvindex}</td>
