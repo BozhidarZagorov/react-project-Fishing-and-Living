@@ -26,6 +26,8 @@ import Next15Days from './components/Next15Days';
 import Footer from './components/Footer';
 
 import './App.css'
+import TermsOfService from './components/TermsOfService';
+import PrivacyPolicy from './components/PrivacyPolicy';
 
 
 function App() {
@@ -50,9 +52,11 @@ function App() {
                 <Route path="/gallery" element={<Gallery />} />
                 <Route path="/gallery/addPicture" element={<GalleryAddPicture/>} />
                 <Route path="/gallery/:pictureId" element={<GalleryPicture />} />
-                <Route path="/contacts" element={<Contacts />} />
                 <Route path="/apartments" element={<Apartments />}/>
                 <Route path="/apartments/:apartmentId" element={<ApartmentDetails />}/>
+                <Route path="/contacts" element={<Contacts />} />
+                <Route path="/termsOfService" element={<TermsOfService />} />
+                <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
                 <Route path="/weather" element={<Weather />}>
                     <Route index element={<CurrentWeather/>}/>
                     <Route path='next15Days' element={<Next15Days/>}/>
