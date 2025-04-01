@@ -4,6 +4,7 @@ import { useNavigate } from "react-router"
 
 const weatherIcons = {
   'partly-cloudy-day': "☁️",
+  cloudy: "☁️",
   rain: "🌧️",
   snow: "❄️",
   sunny: "☀️",
@@ -38,6 +39,7 @@ export default function CurrentWeather() {
 
       const data = await response.json();
       setWeather(data);
+      // console.log(data);
       
     } catch (err) {
       setError(err.message);

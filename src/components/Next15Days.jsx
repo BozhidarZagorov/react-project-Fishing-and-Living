@@ -4,6 +4,7 @@ import { useNavigate } from "react-router"
 
 const weatherIcons = {
   'partly-cloudy-day': "☁️",
+  cloudy: "☁️",
   rain: "🌧️",
   snow: "❄️",
   sunny: "☀️",
@@ -39,7 +40,7 @@ export default function Next15Days() {
 
       const data = await response.json();
       setWeather(data.days);
-      console.log(data.days);
+      // console.log(data.days);
       
     } catch (err) {
       setError(err.message);
