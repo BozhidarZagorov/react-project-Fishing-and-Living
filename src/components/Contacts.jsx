@@ -1,12 +1,19 @@
 import { useState, useRef } from 'react'
-import { useNavigate } from 'react-router'
-// import { ChevronDownIcon } from '@heroicons/react/16/solid'
+import { Link, useNavigate } from 'react-router'
+import emailjs from '@emailjs/browser'
+
 import { Field, Label, Switch } from '@headlessui/react'
+
+//todo add loading spinner to the btn
+//todo change background
+//todo change style on the btn if privacy policy is not selected
+//todo change text above title
 
 export default function About() {
     const [agreed, setAgreed] = useState(false)
     const navigate = useNavigate();
 
+    const titleRef = useRef();
     const firstNameRef = useRef();
     const lastNameRef = useRef();
     const emailRef = useRef();
@@ -16,26 +23,39 @@ export default function About() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const formData = {
-            firstName: firstNameRef.current.value,
-            lastName: lastNameRef.current.value,
-            email: emailRef.current.value, // might remove it after all they log in with email
+        if (!agreed) {
+            return; // returns if privacy policy is not selected
+        }
+
+        const templateParams = {
+            title: titleRef.current.value,
+            name: `${firstNameRef.current.value} ${lastNameRef.current.value}`,
+            time: new Date().toLocaleString(),//Time of sending
+            email: emailRef.current.value,
             phone: phoneRef.current.value,
             message: messageRef.current.value,
         };
 
-        console.log("Sending email with:", formData);
+        try {
+            const response = await emailjs.send(
+                "service_vxaed3q",   // EmailJS Service ID
+                "template_6g0b55n",  // EmailJS Template ID
+                templateParams,
+                "X7q7ds9xZYDEmgDFj"    // EmailJS Public Key
+            );
     
-        
+            if (response.status === 200) {
+                // console.log("Email sent");
+                navigate("/");
+            } else {
+                console.error("Error sending email:", response);
+            }
+        } catch (err) {
+            console.error("Request failed:", err);
+        }
+        console.log("Sending email with:", templateParams);
+        // console.log(Object.fromEntries(templateParams));
     }
-
-    // const formAction = (formData) => {
-    //     console.log(Object.fromEntries(formData));
-
-    //     console.log('Sending the contact information...');
-
-    //     navigate('/');
-    // }
 
 
     return (
@@ -51,13 +71,27 @@ export default function About() {
                     }}
                     className="relative left-1/2 -z-10 aspect-1155/678 w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]"
                 />
-            </div>
+        </div>
             <div className="mx-auto max-w-2xl text-center">
                 <h2 className="text-4xl font-semibold tracking-tight text-balance text-gray-900 sm:text-5xl">Contact sales</h2>
                 <p className="mt-2 text-lg/8 text-gray-600">Aute magna irure deserunt veniam aliqua magna enim voluptate.</p>
             </div>
             <form onSubmit={handleSubmit} className="mx-auto mt-16 max-w-xl sm:mt-20">
-            {/* <form action={formAction} className="mx-auto mt-16 max-w-xl sm:mt-20"> */}
+                    <div className="sm:col-span-2">
+                        <label htmlFor="email" className="block text-sm/6 font-semibold text-gray-900">
+                            Title
+                        </label>
+                        <div className="mt-2.5">
+                            <input
+                                id="title"
+                                name="title"
+                                type="text"
+                                required
+                                ref={titleRef}
+                                className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+                            />
+                        </div>
+                    </div>
                 <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                     <div>
                         <label htmlFor="first-name" className="block text-sm/6 font-semibold text-gray-900">
@@ -91,20 +125,6 @@ export default function About() {
                             />
                         </div>
                     </div>
-                    {/* <div className="sm:col-span-2">
-                        <label htmlFor="company" className="block text-sm/6 font-semibold text-gray-900">
-                            Company
-                        </label>
-                        <div className="mt-2.5">
-                            <input
-                                id="company"
-                                name="company"
-                                type="text"
-                                autoComplete="organization"
-                                className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
-                            />
-                        </div>
-                    </div> */}
                     <div className="sm:col-span-2">
                         <label htmlFor="email" className="block text-sm/6 font-semibold text-gray-900">
                             Email
@@ -127,24 +147,6 @@ export default function About() {
                         </label>
                         <div className="mt-2.5">
                             <div className="flex rounded-md bg-white outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
-                                {/* <div className="grid shrink-0 grid-cols-1 focus-within:relative">
-                                    <select
-                                        id="country"
-                                        name="country"
-                                        autoComplete="country"
-                                        aria-label="Country"
-                                        className="col-start-1 row-start-1 w-full appearance-none rounded-md py-2 pr-7 pl-3.5 text-base text-gray-500 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                                    >
-                                        <option>BG</option>
-                                        <option>US</option>
-                                        <option>CA</option>
-                                        <option>EU</option>
-                                    </select>
-                                    <ChevronDownIcon
-                                        aria-hidden="true"
-                                        className="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4"
-                                    />
-                                </div> */}
                                 <input
                                     id="phone-number"
                                     name="phone-number"
@@ -189,9 +191,9 @@ export default function About() {
                         </div>
                         <Label className="text-sm/6 text-gray-600">
                             By selecting this, you agree to our{' '}
-                            <a href="#" className="font-semibold text-indigo-600">
-                                privacy&nbsp;policy
-                            </a>
+                            <Link to="/privacyPolicy" className="font-semibold text-indigo-600">
+                                Privacy&nbsp;Policy
+                            </Link>
                             .
                         </Label>
                     </Field>
@@ -199,6 +201,7 @@ export default function About() {
                 <div className="mt-10">
                     <button
                         type="submit"
+                        disabled={!agreed}  
                         className="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     >
                         Let's talk
