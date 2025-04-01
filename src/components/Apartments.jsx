@@ -78,7 +78,7 @@ export default function Apartments() {
                     >
                         <h3
                             id={apartment.key}
-                            className={classNames(apartment.featured ? 'text-indigo-400' : 'text-indigo-600', 'text-base/7 font-semibold')}
+                            className={classNames(apartment.featured ? 'text-orange-600' : 'text-orange-600', 'text-base/7 font-semibold')}
                         >
                             {apartment.name}
                         </h3>
@@ -109,7 +109,7 @@ export default function Apartments() {
                                 <li key={index} className="flex gap-x-3">
                                     <CheckIcon
                                         aria-hidden="true"
-                                        className={classNames(apartment.featured ? 'text-indigo-400' : 'text-indigo-600', 'h-6 w-5 flex-none')}
+                                        className={classNames(apartment.featured ? 'text-orange-600' : 'text-orange-600', 'h-6 w-5 flex-none')}
                                     />
                                     {feature}
                                 </li>
@@ -119,9 +119,9 @@ export default function Apartments() {
                             to={apartment.href}
                             className={classNames(
                                 apartment.featured
-                                    ? 'bg-indigo-500 text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-indigo-500'
-                                    : 'text-indigo-600 ring-1 ring-indigo-200 ring-inset hover:ring-indigo-300 focus-visible:outline-indigo-600',
-                                'mt-8 block rounded-md px-3.5 py-2.5 text-center text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 sm:mt-10',
+                                    ? 'btn-orange'
+                                    : 'btn-orange',
+                                'mt-8 block text-center sm:mt-10',
                             )}
                         >
                             View apartment details

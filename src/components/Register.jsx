@@ -16,7 +16,7 @@ export default function Register (){
   useEffect(() => {
     if (isAuthenticated || user) {
       navigate("/");
-      return alert('You are already logged in.');
+      // return alert('You are already logged in.');
     }
   }, [isAuthenticated, user, navigate]);
   
@@ -117,16 +117,21 @@ export default function Register (){
                 <button
                   type="submit"
                   disabled={loading}
-                  className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  className="flex w-full justify-center btn-orange"
                 >
                   {loading ? "Registering..." : "Register"}
                 </button>
+                {loading ? 
+                        <span className="flex justify-center mt-5">
+                            <svg className="spinner"></svg>
+                        </span> 
+                    : null }
               </div>
             </form>
   
             <p className="mt-10 text-center text-sm/6 text-gray-500">
               Already a member?{' '}
-              <Link to="/login" className="font-semibold text-indigo-600 hover:text-indigo-500">
+              <Link to="/login" className="font-semibold text-orange-600 hover:text-orange-500">
                 Log in
               </Link>
             </p>

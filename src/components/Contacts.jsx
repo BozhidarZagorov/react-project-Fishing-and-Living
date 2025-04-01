@@ -4,14 +4,12 @@ import emailjs from '@emailjs/browser'
 
 import { Field, Label, Switch } from '@headlessui/react'
 
-//todo add loading spinner to the btn
 //todo change background
-//todo change style on the btn if privacy policy is not selected
-//todo change text above title
 
 export default function About() {
     const [agreed, setAgreed] = useState(false)
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
 
     const titleRef = useRef();
     const firstNameRef = useRef();
@@ -24,7 +22,8 @@ export default function About() {
         e.preventDefault();
 
         if (!agreed) {
-            return; // returns if privacy policy is not selected
+            alert('You must first agree to our Privacy Policy by checking the box below to send E-mails!')
+            return // returns if privacy policy is not selected
         }
 
         const templateParams = {
@@ -35,6 +34,7 @@ export default function About() {
             phone: phoneRef.current.value,
             message: messageRef.current.value,
         };
+        setLoading(true);
 
         try {
             const response = await emailjs.send(
@@ -53,7 +53,7 @@ export default function About() {
         } catch (err) {
             console.error("Request failed:", err);
         }
-        console.log("Sending email with:", templateParams);
+        // console.log("Sending email with:", templateParams);
         // console.log(Object.fromEntries(templateParams));
     }
 
@@ -73,8 +73,8 @@ export default function About() {
                 />
         </div>
             <div className="mx-auto max-w-2xl text-center">
-                <h2 className="text-4xl font-semibold tracking-tight text-balance text-gray-900 sm:text-5xl">Contact sales</h2>
-                <p className="mt-2 text-lg/8 text-gray-600">Aute magna irure deserunt veniam aliqua magna enim voluptate.</p>
+                <h2 className="text-4xl font-semibold tracking-tight text-balance text-gray-900 sm:text-5xl">Contact us</h2>
+                <p className="mt-2 text-lg/8 text-gray-600">Send us an E-mail if you have any questions about your upcoming adventure</p>
             </div>
             <form onSubmit={handleSubmit} className="mx-auto mt-16 max-w-xl sm:mt-20">
                     <div className="sm:col-span-2">
@@ -180,7 +180,7 @@ export default function About() {
                             <Switch
                                 checked={agreed}
                                 onChange={setAgreed}
-                                className="group flex w-8 flex-none cursor-pointer rounded-full bg-gray-200 p-px ring-1 ring-gray-900/5 transition-colors duration-200 ease-in-out ring-inset focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 data-checked:bg-indigo-600"
+                                className="group flex w-8 flex-none cursor-pointer rounded-full bg-gray-200 p-px ring-1 ring-gray-900/5 transition-colors duration-200 ease-in-out ring-inset focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600 data-checked:bg-orange-600"
                             >
                                 <span className="sr-only">Agree to policies</span>
                                 <span
@@ -191,7 +191,7 @@ export default function About() {
                         </div>
                         <Label className="text-sm/6 text-gray-600">
                             By selecting this, you agree to our{' '}
-                            <Link to="/privacyPolicy" className="font-semibold text-indigo-600">
+                            <Link to="/privacyPolicy" className="font-semibold text-orange-600">
                                 Privacy&nbsp;Policy
                             </Link>
                             .
@@ -201,11 +201,18 @@ export default function About() {
                 <div className="mt-10">
                     <button
                         type="submit"
-                        disabled={!agreed}  
-                        className="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        disabled={loading}  
+                        className="block w-full btn-orange"
                     >
-                        Let's talk
+                    {loading ? 'Sending E-mail' : 'Send E-mail'}
+                        
                     </button>
+                    {loading ? 
+                        <span className="flex justify-center mt-5">
+                            <svg className="spinner"></svg>
+                        </span> 
+                    : null }
+                    
                 </div>
             </form>
         </div>

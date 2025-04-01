@@ -140,13 +140,16 @@ export default function EditWobbler() {
                 <div className="mt-10">
                 <button
                     type="submit"
-                    className="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    className="block w-full btn-orange"
                     >
-                    Edit Wobbler
+                    {loading ? 'Editing Wobbler...' : 'Edit Wobbler'}
                 </button>
+                {loading ? 
+                        <span className="flex justify-center mt-5">
+                            <svg className="spinner"></svg>
+                        </span> 
+                    : null }
                 </div>
-
-                {loading && <p className="spinner mt-5"></p>}
             </div>
             </form>
         </div>

@@ -73,7 +73,7 @@ export default function GalleryPicture () {
     //         return alert('You must be logged in to edit this picture.')
     //     }
     // };
-
+    //todo add alert with yes or no for deletion
     const handleDelete = async () => {
         if (!user || !isAuthenticated){
             navigate('/login')

@@ -111,7 +111,7 @@ export default function CreateWobbler() {
                     </div>
                 </div>
                 <div className="sm:col-span-2">
-                    <label className="block text-sm/6 font-semibold text-gray-900">Image</label>
+                    <label className="block text-sm/6 font-semibold text-gray-900">Wobbler Image</label>
                     <div className="mt-2.5">
                     <input
                         type="file"
@@ -141,13 +141,17 @@ export default function CreateWobbler() {
                 <div className="mt-10">
                 <button
                     type="submit"
-                    className="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    className="block w-full btn-orange"
                     disabled={loading}
                 >
-                    {loading ? 'Adding...' : 'Add Wobbler'}
+                    {loading ? 'Adding Wobbler...' : 'Add Wobbler'}
                 </button>
-                </div>
-                {loading && <p className="spinner mt-5"></p>}
+                {loading ? 
+                        <span className="flex justify-center mt-5">
+                            <svg className="spinner"></svg>
+                        </span> 
+                    : null }
+                </div> 
             </div>
             </form>
         </div>

@@ -73,8 +73,13 @@ export default function Next15Days() {
           Get Weather
         </button>
       </div>
+      {loading ? 
+        <span className="flex justify-center mt-5">
+          <svg className="spinner"></svg>
+        </span> 
+      : null }
 
-      {loading && <div className="flex justify-center items-center spinner mt-5 h-32"></div>}
+      {/* {loading && <div className="flex justify-center items-center spinner mt-5 h-32"></div>} */}
       {error && <p className="mt-4 text-red-500 text-center">{error}</p>}
 
       {weather && (

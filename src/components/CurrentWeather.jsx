@@ -72,8 +72,13 @@ export default function CurrentWeather() {
           Get Weather
         </button>
       </div>
+      {loading ? 
+        <span className="flex justify-center mt-5">
+            <svg className="spinner"></svg>
+        </span> 
+      : null }
 
-      {loading && <p className="spinner mt-5"></p>}
+      {/* {loading && <p className="flex justify-center spinner mt-5"></p>} */}
       {error && <p className="mt-4 text-red-500">{error}</p>}
 
       {weather && (

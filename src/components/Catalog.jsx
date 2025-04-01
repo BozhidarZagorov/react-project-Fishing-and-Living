@@ -17,7 +17,7 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid'
 const sortOptions = [
     { name: 'All', href: '/catalog', current: true },
     { name: 'Most Liked', href: '/catalog?sortBy=likes&dir=desc', current: false },
-    { name: 'Most Caught Fish', href: '/catalog?sortBy=fishCount&dir=desc', current: false },
+    { name: 'Most Caught Fishes', href: '/catalog?sortBy=fishCount&dir=desc', current: false },
 ]
 
 function classNames(...classes) {
