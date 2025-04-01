@@ -4,7 +4,9 @@ import emailjs from '@emailjs/browser'
 
 import { Field, Label, Switch } from '@headlessui/react'
 
-//todo change background
+//todo change background for contacts/edits/creates
+//todo change wobbler data
+//todo host on to firebase
 
 export default function About() {
     const [agreed, setAgreed] = useState(false)
