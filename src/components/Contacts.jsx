@@ -5,6 +5,7 @@ import emailjs from '@emailjs/browser'
 import { Field, Label, Switch } from '@headlessui/react'
 
 //todo change background for contacts/edits/creates
+//todo upload the current backgrounds and logo to cloudinary
 //todo change wobbler data
 //todo host on to firebase
 
