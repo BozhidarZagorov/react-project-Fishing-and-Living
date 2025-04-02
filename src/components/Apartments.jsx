@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router'
 import { collection, getDocs} from 'firebase/firestore'
 import { db } from '../../config/firebaseinit'
-import { useAuth } from '../../ctx/FirebaseAuth'
 
 import { CheckIcon } from '@heroicons/react/20/solid'
 import { UserIcon } from '@heroicons/react/24/solid';
@@ -14,7 +13,6 @@ function classNames(...classes) {
 export default function Apartments() {
     const [apartments, setApartments] = useState({})
     const [loading, setLoading] = useState(true)
-    const { user, isAuthenticated } = useAuth(); //! auth ctx
 
 
     useEffect(() => {
@@ -44,12 +42,11 @@ export default function Apartments() {
             <div aria-hidden="true" className="absolute inset-0 -z-10 transform-gpu overflow-hidden">
                     <div
                         style={{
-                            backgroundImage: 'url(/apartments.png)',  // Replace with your image URL
+                            backgroundImage: 'url(https://res.cloudinary.com/dbleq6bwe/image/upload/v1743596388/pnrlk3jkgasuiv7hq927.jpg)',
                             backgroundSize: 'cover',
                             backgroundPosition: 'center',
                             width: '100%',
-                            height: '100%',  // Make it cover the full page height
-                            opacity: 1,  // Remove blur and opacity
+                            height: '100%',  
                         }}
                         className="absolute inset-0"
                     />

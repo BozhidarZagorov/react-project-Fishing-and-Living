@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router';
 
-import { Dialog, DialogPanel } from '@headlessui/react'
+import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
 import { useAuth } from "../../ctx/FirebaseAuth";
@@ -24,7 +24,7 @@ export default function Header() {
                 <div className="flex lg:flex-1">
                     <Link to="/" className="navbar-logo">
                         <span className="sr-only">Fishing&Living</span>
-                        <img alt="" src="/logo.png" />
+                        <img alt="" src="https://res.cloudinary.com/dbleq6bwe/image/upload/v1743596556/qk8auroedexyzsikdoyc.png" />
                     </Link>
                 </div>
                 <div className="flex lg:hidden">
@@ -69,7 +69,7 @@ export default function Header() {
                     <div className="flex items-center justify-between">
                         <Link to="/" className="navbar-logo">
                             <span className="sr-only">Fishing&Living</span>
-                            <img alt="" src="/logo.png" />
+                            <img alt="" src="https://res.cloudinary.com/dbleq6bwe/image/upload/v1743596556/qk8auroedexyzsikdoyc.png" />
                         </Link>
                         <button type="button" onClick={() => setMobileMenuOpen(false)} className="menu-button">
                             <span className="sr-only">Close menu</span>

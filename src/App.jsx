@@ -31,7 +31,7 @@ import PrivacyPolicy from './components/PrivacyPolicy';
 
 
 function App() {
-    useFavicon("/logo.png");
+    useFavicon("https://res.cloudinary.com/dbleq6bwe/image/upload/v1743596556/qk8auroedexyzsikdoyc.png");
     return (
     <AuthProvider>
         <div className="bg-white flex flex-col min-h-screen">
