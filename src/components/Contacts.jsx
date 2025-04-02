@@ -1,6 +1,8 @@
 import { useState, useRef } from 'react'
 import { Link, useNavigate } from 'react-router'
 import emailjs from '@emailjs/browser'
+import { useAuth } from '/public/ctx/FirebaseAuth'
+
 
 import { Field, Label, Switch } from '@headlessui/react'
 
@@ -11,6 +13,8 @@ export default function About() {
     const [agreed, setAgreed] = useState(false)
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
+    const { user, isAuthenticated } = useAuth(); //! auth ctx
+
 
     const titleRef = useRef();
     const firstNameRef = useRef();
@@ -21,6 +25,11 @@ export default function About() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (!isAuthenticated) {
+            navigate("/login"); // Redirect to login if not auth
+            return alert('You must be logged in to send E-mails.');
+        }
 
         if (!agreed) {
             alert('You must first agree to our Privacy Policy by checking the box below to send E-mails!')
