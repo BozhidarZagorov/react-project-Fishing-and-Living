@@ -22,11 +22,11 @@
     justify-content: center;
     border-radius: 0.375rem;
     padding: 0.625rem;
-    color: #4b5563;
+    color: #ea580c;
 }
 
 .desktop-nav {
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     gap: 3rem;
