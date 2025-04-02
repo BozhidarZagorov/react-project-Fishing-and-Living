@@ -1,4 +1,4 @@
-# Fishing & Living App - Engineering Stack & Functionality
+# Fishing & Living App | https://fishing-and-living.web.app | - Engineering Stack & Functionality 
 
 ## Overview
 
@@ -101,6 +101,8 @@ Fishing & Living is a web-based application that provides users with a platform 
 - Modifying Contact us functionality (by users sending emails with their own emails that are google verified / currently sending emails 'from' and 'to' the same email)
 
 - Improve UI/UX with animations and better state management
+
+- Improve mobile UI/UX
 
 # Conclusion
 
