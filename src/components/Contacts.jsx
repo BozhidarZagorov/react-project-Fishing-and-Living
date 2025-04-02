@@ -6,9 +6,6 @@ import { useAuth } from '/public/ctx/FirebaseAuth'
 
 import { Field, Label, Switch } from '@headlessui/react'
 
-//todo host on to firebase
-//todo change wobbler data
-
 export default function About() {
     const [agreed, setAgreed] = useState(false)
     const navigate = useNavigate();
