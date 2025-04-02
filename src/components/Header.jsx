@@ -33,7 +33,7 @@ export default function Header() {
                         <Bars3Icon aria-hidden="true" className="size-6" />
                     </button>
                 </div>
-                <div className="desktop-nav">
+                <div className={`desktop-nav ${user ? "flex-grow-10" : "flex-grow-4"}`}>
                     {navigation.map((item) => (
                         <NavLink 
                             key={item.name} 

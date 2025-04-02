@@ -26,9 +26,10 @@
 }
 
 .desktop-nav {
-    display: none;
-    flex-grow: 8;
+    display: flex;
     justify-content: center;
+    align-items: center;
+    gap: 3rem;
 }
 
 @media (min-width: 1024px) {
