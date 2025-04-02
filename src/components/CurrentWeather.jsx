@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useAuth } from '../../ctx/FirebaseAuth'
+import { useAuth } from '/public/ctx/FirebaseAuth'
 import { useNavigate } from "react-router"
 
 const weatherIcons = {

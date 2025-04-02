@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router";
-import { auth } from "../../config/firebaseinit";
+import { auth } from "/public/config/firebaseinit";
 import { signOut } from "firebase/auth";
 
 export default function Logout() {

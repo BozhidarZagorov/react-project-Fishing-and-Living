@@ -1,8 +1,8 @@
 import {useRef,useState,useEffect} from "react";
 import { Link, useNavigate } from "react-router";
-import { auth } from "../../config/firebaseinit";
+import { auth } from "/public/config/firebaseinit";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { useAuth } from '../../ctx/FirebaseAuth'
+import { useAuth } from '/public/ctx/FirebaseAuth'
 
 export default function Login (){
   const emailRef = useRef();
@@ -40,11 +40,11 @@ export default function Login (){
 
     return (
       <>
-        <div className="relative isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
+        <div className="relative isolate px-6 py-24 sm:py-32 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <img
               alt="Fishing&Living"
-              src="/logo.png"
+              src="https://res.cloudinary.com/dbleq6bwe/image/upload/v1743596556/qk8auroedexyzsikdoyc.png"
               className="mx-auto h-10 w-auto"
             />
             <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
@@ -69,7 +69,7 @@ export default function Login (){
                     required
                     autoComplete="email"
                     ref={emailRef}
-                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-orange-600 sm:text-sm/6 opacity-80"
                   />
                 </div>
               </div>
@@ -93,7 +93,7 @@ export default function Login (){
                     required
                     autoComplete="current-password"
                     ref={passwordRef}
-                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-orange-600 sm:text-sm/6 opacity-80"
                   />
                 </div>
               </div>

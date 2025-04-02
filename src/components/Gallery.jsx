@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import { Link, useSearchParams } from "react-router"
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../../config/firebaseinit";
-import { useAuth } from '../../ctx/FirebaseAuth'
+import { db } from "/public/config/firebaseinit";
+import { useAuth } from '/public/ctx/FirebaseAuth'
 import { useNavigate } from "react-router"
 
 import {

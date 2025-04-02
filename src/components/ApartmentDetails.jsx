@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router'
 import { doc, getDoc} from 'firebase/firestore'
-import { db } from '../../config/firebaseinit'
-import { useAuth } from '../../ctx/FirebaseAuth'
+import { db } from '/public/config/firebaseinit'
+import { useAuth } from '/public/ctx/FirebaseAuth'
 
 export default function ApartmentDetails () {
     const [showPhone, setShowPhone] = useState(false);

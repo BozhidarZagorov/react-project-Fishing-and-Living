@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router'
 import { collection, getDocs} from 'firebase/firestore'
-import { db } from '../../config/firebaseinit'
+import { db } from '/public/config/firebaseinit'
 
 import { CheckIcon } from '@heroicons/react/20/solid'
 import { UserIcon } from '@heroicons/react/24/solid';

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { collection, addDoc } from 'firebase/firestore';
-import { db } from '../../config/firebaseinit';
-import { useAuth } from '../../ctx/FirebaseAuth';
+import { db } from '/public/config/firebaseinit';
+import { useAuth } from '/public/ctx/FirebaseAuth';
 import { useNavigate } from 'react-router'
 
 
