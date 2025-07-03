@@ -91,7 +91,7 @@ export default function ApartmentDetails () {
 
                                 {isAuthenticated && showPhone && (
                                     <p className="mt-4 text-center text-lg font-medium text-gray-900">
-                                        📞 +359 88 123 4567
+                                        📞 {apartment.phone}
                                     </p>
                                 )}
                             </div>
